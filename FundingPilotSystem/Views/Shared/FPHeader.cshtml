@@ -1,0 +1,75 @@
+﻿@using FundingPilotSystem.Domain.SolutionDto
+<div class="wrap">
+    <div class="navbar">
+        <div class="branding">
+            <h1>
+                <a class="logo" controller="Home" action="Dashboard" href="@Url.Action("Dashboard", "Home")">
+                    <img src="~/Contents/Images/Shared/logo.jpg" width="100" height="100" alt="P2P-logo" />
+                </a>
+            </h1>
+        </div>
+        <a class="btn btn-navbar hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="user">
+            <p>
+                @if (FPApplication.LoggedInUser != null)
+                {
+                    @FPApplication.LoggedInUser.Username
+               }
+        </p>
+        @Html.ActionLink("SignOut", "SignOut", "UserAccount")
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span10">
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Loan Accounts<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Manage</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">System Configuration<b class="caret bottom-up"></b></a>
+                        <ul class="dropdown-menu bottom-up pull-right">
+                            <li><a href="#">Account Opening Form Management</a></li>
+                            <li><a href="#">Manage E-mail Templates</a></li>
+                            <li><a href="#">Customize language of particular page</a></li>
+                            <li><a href="@Url.Action("Customize", "CustomLocalization", new { @area = "SystemConfiguration" })">CMS Configuration</a></li>
+                            <li class="divider"></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Profile<b class="caret bottom-up"></b></a>
+                        <ul class="dropdown-menu bottom-up pull-right">
+                            <li><a href="#">Change Registered E-mail</a></li>
+                            <li><a href="#">Manage Password Complexity Rules</a></li>
+                            <li class="divider"></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management<b class="caret bottom-up"></b></a>
+                        <ul class="dropdown-menu bottom-up pull-right">
+                            <li><a href="#">Export User Details</a></li>
+                            <li><a href="#">Review User's Access Log</a></li>
+                            <li><a href="#">List Accounts</a></li>
+                            <li><a href="#">Lock/Unlock User</a></li>
+                            <li><a href="#">Review partial KYC  (Yellow flag) User</a></li>
+                            <li class="divider"></li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

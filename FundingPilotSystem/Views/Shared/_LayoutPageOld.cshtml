@@ -1,0 +1,58 @@
+﻿@using FundingPilotSystem.Utilities
+@using Telerik.Web.Mvc.UI;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Style("~/Contents/assets/fonts/open-sans-fontfacekit/stylesheet.min.css")
+    @Html.Style("~/Contents/assets/fonts/Font-Awesome/css/font-awesome.min.css")
+    @Html.Style("~/Contents/assets/Style.css")
+    @Html.Style("~/Contents/assets/FontsStyle.min.css")
+    @Html.Style("~/Contents/Styles/Shared/Common.css")
+
+    @Html.Script("~/Contents/Scripts/Shared/jquery-1.8.1.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery-migrate-1.1.1.min.js")
+    @Html.Script("~/Contents/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")
+
+    @(Html.Telerik().StyleSheetRegistrar()
+                      .DefaultGroup(group => group
+                          .Add("telerik.common.css")
+                          .Add("telerik.default.css")
+                          .Add("telerik.rtl.css")
+                          .Compress(true).CacheDurationInDays(10000))
+    )
+
+    @RenderSection("Head", false)
+</head>
+<body>
+    <header class="header">
+        @Html.Partial("FPHeader")
+    </header>
+    <div class="content">
+        <div class="wrap">
+            <div class="sidebar">
+
+            </div>
+            <div class="main-content">
+                @RenderBody()
+            </div>
+            @*<div class="sidebarRight">
+
+                </div>*@
+        </div>
+        <!-- wrap -->
+    </div>
+    @Html.Script("~/Contents/Scripts/Shared/jquery.unobtrusive-ajax.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery.validate.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery.validate.unobtrusive.min.js")
+    @Html.Script("~/Contents/assets/js/vendor/bootstrap.min.js")
+
+
+    @Html.Telerik().ScriptRegistrar().jQuery(false)
+    @Html.Script("~/Contents/Scripts/Shared/jquery.numeric.validation.min.js")
+</body>
+</html>
+
+

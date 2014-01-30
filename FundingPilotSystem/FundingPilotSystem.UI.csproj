@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2537CC9C-1183-4DAF-AD46-9577341CCB74}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FundingPilotSystem</RootNamespace>
+    <AssemblyName>FundingPilotSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>Assets\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>Assets\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.Mvc">
+      <HintPath>Assets\Telerik.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\RegistrationProcess\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\RegistrationProcess\RegistrationAreaRegistration.cs" />
+    <Compile Include="Areas\SystemConfiguration\SystemConfigurationAreaRegistration.cs" />
+    <Compile Include="Areas\UserManagement\Models\WebAccessLogModel.cs" />
+    <Compile Include="Areas\UserManagement\UserManagementAreaRegistration.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceReferences\MasterDataProviderService.cs" />
+    <Compile Include="ServiceReferences\RegistrationProcessService.cs" />
+    <Compile Include="Utilities\CacheManager.cs" />
+    <Compile Include="Utilities\CommonUtility.cs" />
+    <Compile Include="Utilities\ServiceReferences.cs" />
+    <Compile Include="Utilities\StaticContentHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Contents\assets\FontsStyle.css" />
+    <Content Include="Contents\assets\FontsStyle.min.css" />
+    <Content Include="Contents\assets\fonts\FLSmidth.ICLCom-Icon-Font.dev.svg" />
+    <Content Include="Contents\assets\fonts\FLSmidth.ICLCom-Icon-Font.svg" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\css\font-awesome-ie7.min.css" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\css\font-awesome.css" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\css\font-awesome.min.css" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\font\fontawesome-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\demo.html" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Bold-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-BoldItalic-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBold-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBoldItalic-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Italic-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Light-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-LightItalic-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Regular-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Semibold-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-SemiboldItalic-webfont.svg" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\stylesheet.css" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\stylesheet.min.css" />
+    <Content Include="Contents\assets\css\vendor\bootstrap-theme.css" />
+    <Content Include="Contents\assets\css\vendor\bootstrap-theme.min.css" />
+    <Content Include="Contents\assets\css\vendor\bootstrap.css" />
+    <Content Include="Contents\assets\css\vendor\bootstrap.min.css" />
+    <Content Include="Contents\assets\js\vendor\bootstrap.js" />
+    <Content Include="Contents\assets\js\vendor\bootstrap.min.js" />
+    <Content Include="Contents\assets\js\vendor\jquery-1.10.1.min.js" />
+    <Content Include="Contents\assets\js\vendor\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="Contents\assets\Style.css" />
+    <Content Include="Contents\assets\Style.min.css" />
+    <Content Include="Contents\Images\Shared\logo.jpg" />
+    <Content Include="Contents\Styles\AccountManagement\UserAccount.css" />
+    <Content Include="Contents\Styles\AccountManagement\UserAccount.min.css" />
+    <Content Include="Contents\Styles\Shared\Common.css" />
+    <Content Include="Contents\Styles\Shared\Common.min.css" />
+    <Content Include="Contents\assets\css\vendor\custom.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Contents\Scripts\Shared\jquery-1.8.1.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery-migrate-1.1.1.js" />
+    <Content Include="Contents\Scripts\Shared\jquery-migrate-1.1.1.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery-ui-1.9.2.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.numeric.validation.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.numeric.validation.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.unobtrusive-ajax.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.validate.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.validate.min.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.validate.unobtrusive.js" />
+    <Content Include="Contents\Scripts\Shared\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Telerik.Contents\Content\Black\editor.png" />
+    <Content Include="Telerik.Contents\Content\Black\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Black\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Black\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Black\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Black\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Black\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Black\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Black\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Black\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Default\editor.png" />
+    <Content Include="Telerik.Contents\Content\Default\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Default\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Default\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Default\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Default\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Default\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Default\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Default\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Default\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Forest\editor.png" />
+    <Content Include="Telerik.Contents\Content\Forest\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Forest\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Forest\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Forest\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Forest\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Forest\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Forest\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Forest\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Forest\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Hay\editor.png" />
+    <Content Include="Telerik.Contents\Content\Hay\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Hay\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Hay\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Hay\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Hay\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Hay\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Hay\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Hay\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Hay\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Metro\editor.png" />
+    <Content Include="Telerik.Contents\Content\Metro\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Metro\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Metro\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Metro\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Metro\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\editor.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Office2007\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Office2007\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Office2007\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Office2007\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\editor.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Black\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\editor.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\gradient.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Blue\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\editor.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\gradient.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Office2010Silver\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\editor.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Outlook\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Outlook\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Outlook\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Outlook\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Simple\editor.png" />
+    <Content Include="Telerik.Contents\Content\Simple\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Simple\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Simple\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Simple\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Simple\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Simple\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Simple\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Simple\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\editor.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Sitefinity\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\editor.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Sunset\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Sunset\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Sunset\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Sunset\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\telerik.black.css" />
+    <Content Include="Telerik.Contents\Content\telerik.black.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.common.css" />
+    <Content Include="Telerik.Contents\Content\telerik.common.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.default.css" />
+    <Content Include="Telerik.Contents\Content\telerik.default.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.forest.css" />
+    <Content Include="Telerik.Contents\Content\telerik.forest.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.hay.css" />
+    <Content Include="Telerik.Contents\Content\telerik.hay.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.metro.css" />
+    <Content Include="Telerik.Contents\Content\telerik.metro.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2007.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2007.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010black.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010black.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010blue.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010blue.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010silver.css" />
+    <Content Include="Telerik.Contents\Content\telerik.office2010silver.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.outlook.css" />
+    <Content Include="Telerik.Contents\Content\telerik.outlook.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.rtl.css" />
+    <Content Include="Telerik.Contents\Content\telerik.rtl.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.simple.css" />
+    <Content Include="Telerik.Contents\Content\telerik.simple.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.sitefinity.css" />
+    <Content Include="Telerik.Contents\Content\telerik.sitefinity.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.sunset.css" />
+    <Content Include="Telerik.Contents\Content\telerik.sunset.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.telerik.css" />
+    <Content Include="Telerik.Contents\Content\telerik.telerik.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.transparent.css" />
+    <Content Include="Telerik.Contents\Content\telerik.transparent.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.vista.css" />
+    <Content Include="Telerik.Contents\Content\telerik.vista.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.web20.css" />
+    <Content Include="Telerik.Contents\Content\telerik.web20.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.webblue.css" />
+    <Content Include="Telerik.Contents\Content\telerik.webblue.min.css" />
+    <Content Include="Telerik.Contents\Content\telerik.windows7.css" />
+    <Content Include="Telerik.Contents\Content\telerik.windows7.min.css" />
+    <Content Include="Telerik.Contents\Content\Telerik\editor.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Telerik\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Telerik\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Telerik\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Telerik\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\active.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\editor.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\gradient.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\group.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\hover.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Transparent\selected.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Transparent\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Transparent\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\toolbar.png" />
+    <Content Include="Telerik.Contents\Content\Transparent\widget.png" />
+    <Content Include="Telerik.Contents\Content\Vista\editor.png" />
+    <Content Include="Telerik.Contents\Content\Vista\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Vista\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Vista\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Vista\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Vista\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Vista\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Web20\editor.png" />
+    <Content Include="Telerik.Contents\Content\Web20\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Web20\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Web20\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Web20\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Web20\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Web20\sprite.png" />
+    <Content Include="Telerik.Contents\Content\Web20\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\Web20\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\Web20\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\editor.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\loading.gif" />
+    <Content Include="Telerik.Contents\Content\WebBlue\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\WebBlue\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\WebBlue\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\sprite.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\treeview-line.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\treeview-nodes-rtl.png" />
+    <Content Include="Telerik.Contents\Content\WebBlue\treeview-nodes.png" />
+    <Content Include="Telerik.Contents\Content\Windows7\editor.png" />
+    <Content Include="Telerik.Contents\Content\Windows7\imagebrowser.png" />
+    <Content Include="Telerik.Contents\Content\Windows7\loading.gif" />
+    <Content Include="Telerik.Contents\Content\Windows7\slider-h.gif" />
+    <Content Include="Telerik.Contents\Content\Windows7\slider-v.gif" />
+    <Content Include="Telerik.Contents\Content\Windows7\sprite-vertical.png" />
+    <Content Include="Telerik.Contents\Content\Windows7\sprite.png" />
+    <Content Include="Telerik.Contents\Scripts\components.js" />
+    <Content Include="Telerik.Contents\Scripts\components.min.js" />
+    <Content Include="Telerik.Contents\Scripts\dom.js" />
+    <Content Include="Telerik.Contents\Scripts\dom.min.js" />
+    <Content Include="Telerik.Contents\Scripts\editor.js" />
+    <Content Include="Telerik.Contents\Scripts\editor.min.js" />
+    <Content Include="Telerik.Contents\Scripts\formatblock.js" />
+    <Content Include="Telerik.Contents\Scripts\formatblock.min.js" />
+    <Content Include="Telerik.Contents\Scripts\image.js" />
+    <Content Include="Telerik.Contents\Scripts\image.min.js" />
+    <Content Include="Telerik.Contents\Scripts\indent.js" />
+    <Content Include="Telerik.Contents\Scripts\indent.min.js" />
+    <Content Include="Telerik.Contents\Scripts\inlineformat.js" />
+    <Content Include="Telerik.Contents\Scripts\inlineformat.min.js" />
+    <Content Include="Telerik.Contents\Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Telerik.Contents\Scripts\jquery.validate.js" />
+    <Content Include="Telerik.Contents\Scripts\jquery.validate.min.js" />
+    <Content Include="Telerik.Contents\Scripts\linebreak.js" />
+    <Content Include="Telerik.Contents\Scripts\linebreak.min.js" />
+    <Content Include="Telerik.Contents\Scripts\link.js" />
+    <Content Include="Telerik.Contents\Scripts\link.min.js" />
+    <Content Include="Telerik.Contents\Scripts\lists.js" />
+    <Content Include="Telerik.Contents\Scripts\lists.min.js" />
+    <Content Include="Telerik.Contents\Scripts\main.js" />
+    <Content Include="Telerik.Contents\Scripts\main.min.js" />
+    <Content Include="Telerik.Contents\Scripts\pendingformats.js" />
+    <Content Include="Telerik.Contents\Scripts\pendingformats.min.js" />
+    <Content Include="Telerik.Contents\Scripts\range.js" />
+    <Content Include="Telerik.Contents\Scripts\range.min.js" />
+    <Content Include="Telerik.Contents\Scripts\serializer.js" />
+    <Content Include="Telerik.Contents\Scripts\serializer.min.js" />
+    <Content Include="Telerik.Contents\Scripts\svg.js" />
+    <Content Include="Telerik.Contents\Scripts\svg.min.js" />
+    <Content Include="Telerik.Contents\Scripts\system.js" />
+    <Content Include="Telerik.Contents\Scripts\system.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.autocomplete.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.autocomplete.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.calendar.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.calendar.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.combobox.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.combobox.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.common.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.common.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.datepicker.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.datepicker.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.datetimepicker.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.datetimepicker.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.draganddrop.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.draganddrop.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.editing.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.editing.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.filtering.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.filtering.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.grouping.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.grouping.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.reordering.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.reordering.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.resizing.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.grid.resizing.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.imagebrowser.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.imagebrowser.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.list.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.list.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.menu.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.menu.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.panelbar.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.panelbar.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.slider.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.slider.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.splitter.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.splitter.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.tabstrip.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.tabstrip.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.textbox.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.textbox.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.timepicker.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.timepicker.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.treeview.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.treeview.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.upload.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.upload.min.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.window.js" />
+    <Content Include="Telerik.Contents\Scripts\telerik.window.min.js" />
+    <Content Include="Telerik.Contents\Scripts\themes.js" />
+    <Content Include="Telerik.Contents\Scripts\themes.min.js" />
+    <Content Include="Telerik.Contents\Scripts\vml.js" />
+    <Content Include="Telerik.Contents\Scripts\vml.min.js" />
+    <Content Include="Telerik.Contents\Telerik.Web.Mvc.dll" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\RegistrationProcess\Models\" />
+    <Folder Include="Areas\RegistrationProcess\Views\Shared\" />
+    <Folder Include="Areas\SystemConfiguration\Controllers\" />
+    <Folder Include="Areas\SystemConfiguration\Models\" />
+    <Folder Include="Areas\SystemConfiguration\Views\Shared\" />
+    <Folder Include="Areas\UserManagement\Controllers\" />
+    <Folder Include="Areas\UserManagement\Views\Shared\" />
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserManagement\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\RegistrationProcess\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutPageOld.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contents\assets\fonts\FLSmidth.ICLCom-icon-Font.eot" />
+    <Content Include="Contents\assets\fonts\FLSmidth.ICLCom-Icon-Font.ttf" />
+    <Content Include="Contents\assets\fonts\FLSmidth.ICLCom-Icon-Font.woff" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\font\fontawesome-webfont.eot" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\font\FontAwesome.otf" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\less\font-awesome-ie7.less" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\less\font-awesome.less" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\sass\font-awesome.sass" />
+    <Content Include="Contents\assets\fonts\Font-Awesome\sass\font-awesome.scss" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Bold-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Bold-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Bold-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-BoldItalic-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-BoldItalic-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-BoldItalic-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBold-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBold-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBold-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBoldItalic-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBoldItalic-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-ExtraBoldItalic-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Italic-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Italic-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Italic-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Light-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Light-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Light-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-LightItalic-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-LightItalic-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-LightItalic-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Regular-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Regular-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Regular-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Semibold-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Semibold-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-Semibold-webfont.woff" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-SemiboldItalic-webfont.eot" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-SemiboldItalic-webfont.ttf" />
+    <Content Include="Contents\assets\fonts\open-sans-fontfacekit\OpenSans-SemiboldItalic-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\FPHeader.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
+      <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
+      <Name>FundingPilotSystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FundingPilotSystem.VM\FundingPilotSystem.VM.csproj">
+      <Project>{ae114f51-617e-4991-87a6-92372a45312f}</Project>
+      <Name>FundingPilotSystem.VM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingFramework\FundingPilot.LoggingFramework.csproj">
+      <Project>{f40fee50-378e-4101-baed-f5932310ade7}</Project>
+      <Name>FundingPilot.LoggingFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UserAccount\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\UserAccountManagement\UserAccountManagement.en-IN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\SystemConfiguration\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utilities\FundingPilotStystem_ServiceProxyClass_Generator.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Log4Net\log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\RegistrationProcess\Views\Registration\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\RegistrationProcess\RegistrationProcess.en-IN.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54634</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/FundingPilotSystem.UI</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

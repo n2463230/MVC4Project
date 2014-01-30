@@ -1,0 +1,38 @@
+﻿@using Telerik.Web.Mvc.UI
+@{
+    ViewBag.Title = "Index";
+   
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="control-group">
+            <div class="controls-row">
+                <div class="p_header">
+                    <span class="pageHeader">Country Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="span12">
+        <div class="controls-row">
+            <div class="span5">
+                <div class="control-group">
+                    <div class="controls-row">
+                        @Html.Label("lblCountry", "Countries:")
+
+                    </div>
+                    <div class="controls-row">
+                        @(Html.Telerik().ComboBox()
+                        .Name("cmbCountries")
+                                 .BindTo(new SelectList(ViewBag.Countries, "Id", "Country"))
+                                .HtmlAttributes(new { @style = "width:220px" })
+                                .SelectedIndex(0))
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

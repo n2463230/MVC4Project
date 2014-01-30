@@ -1,0 +1,130 @@
+﻿@using FundingPilotSystem.Utilities
+@using Telerik.Web.Mvc.UI;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Style("~/Contents/assets/css/vendor/bootstrap.min.css")
+    @Html.Style("~/Contents/assets/css/vendor/bootstrap-theme.min.css")
+    @Html.Style("~/Contents/assets/css/vendor/custom.css")
+    @Html.Style("~/Contents/Styles/Shared/Common.css")
+
+    @Html.Script("~/Contents/Scripts/Shared/jquery-1.8.1.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery-migrate-1.1.1.min.js")
+    @Html.Script("~/Contents/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")
+
+    @(Html.Telerik().StyleSheetRegistrar()
+                      .DefaultGroup(group => group
+                          .Add("telerik.common.css")
+                          .Add("telerik.default.css")
+                          .Add("telerik.rtl.css")
+                          .Compress(true).CacheDurationInDays(10000))
+    )
+
+
+</head>
+<body>
+    <div class="container-full">
+        <header class="fp-header blue" role="banner">
+            <!-- class here will not be part of bootstrap -->
+            <div class="container fixHeight">
+                <!-- CMS placeholder -->
+                <div class="row">
+                    <!-- CMS - input with divs - row & column classes + content -->
+                    Header – banner option –site wideor page individual-CMS
+                </div>
+            </div>
+        </header>
+        <header class="black">
+            <!-- Logo, menu, etc NOT CMS -->
+            <div class="container navigation-bar">
+                <div class="row">
+                    <!-- System driven / App content input with div - column classes + content -->
+                    <!-- Navigation bar -->
+                    <div class="navbar navbar-inverse" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Logo</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Accounts</a></li>
+                                <li><a href="#">Loans</a></li>
+                                <li><a href="#">Bids</a></li>
+                                <li><a href="#">Statements</a></li>
+                                <li><a href="#">Settings</a></li>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="green">
+            <!-- One or more sections, etc NOT CMS -->
+            <div class="container fixHeight">
+                <div class="row">
+                    <!-- System driven / App content input with div - column classes + content -->
+                    Section – AppContent
+                </div>
+            </div>
+        </section>
+        <section class="fp-section blue">
+            <!-- class here will not be part of bootstrap -->
+            <div class="container fixHeight">
+                <!-- CMS placeholder -->
+                <!-- CMS - input with divs - row & column classes + content -->
+                <div class="row">
+                    Section - CMS
+                </div>
+            </div>
+        </section>
+        <section class="mainContentBackground">
+            <!-- Mixed content - App content and  -->
+            <div class="container fixHeight">
+                <div class="row">
+                    <div class="col-md-9 no-padding">
+                        <!-- System driven / App content input with div - column classes + content -->
+                        <div class="green main-content-left">
+                            @RenderBody()
+                        </div>
+                    </div>
+                    <aside class="fp-aside">
+                        <!-- class here will not be part of bootstrap -->
+                        <div class="col-md-3 no-padding">
+                            <!-- CMS placeholder -->
+                            <!-- CMS - input with nested divs - row & column classes + content -->
+                            <div class="blue main-content-right">
+                                Aside - CMS
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <footer class="fp-footer blue">
+            <!-- class here will not be part of bootstrap -->
+            <div class="container fixHeight">
+                <!-- CMS placeholder -->
+                <!-- CMS - input with divs - row & column classes + content -->
+                <div class="row">
+                    Footer - CMS
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    @Html.Script("~/Contents/Scripts/Shared/jquery.unobtrusive-ajax.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery.validate.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/jquery.validate.unobtrusive.min.js")
+    @Html.Script("~/Contents/assets/js/vendor/bootstrap.min.js")
+
+    @Html.Telerik().ScriptRegistrar().jQuery(false)
+</body>
+</html>

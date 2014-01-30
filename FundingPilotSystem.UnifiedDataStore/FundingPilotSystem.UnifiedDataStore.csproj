@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37A16C94-B9B8-45EE-B743-BCDDE6DF0F5F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FundingPilotSystem.UnifiedDataStore</RootNamespace>
+    <AssemblyName>FundingPilotSystem.UnifiedDataStore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>Assets\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>Assets\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataProviders\MasterDataProvider.cs" />
+    <Compile Include="DataProviders\UserCredentialProvider.cs" />
+    <Compile Include="DataProviders\FPUserProfile\Registration\RegistrationProvider.cs" />
+    <Compile Include="ORM\FPMasterValues.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPMasterValues.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPMasterValues.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPMasterValues.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPMasterValues.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserCredential.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserCredential.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserCredential.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserCredential.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserCredential.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserCredential.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserProfile.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserProfile.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserProfile.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPUserProfile.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPUserProfile.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\sp_helpdiagrams_Result.cs">
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\sysdiagram.cs">
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblAccountOpeningField.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblCompanyIndustryList.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblCountryList.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblCountryOfOperation.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblKYCStatus.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblPublicAuthorityIndustryList.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblRegisteredUser.cs">
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblSupportedAccountType.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblSupportedCurrency.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblSupportedLanguage.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblSystemModule.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblUserLoginCredential.cs">
+      <DependentUpon>FPUserCredential.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblUserLoginQuestion.cs">
+      <DependentUpon>FPUserCredential.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblUserRegistrationRequest.cs">
+      <DependentUpon>FPUserProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblUserStatus.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblUserType.cs">
+      <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ORM\FPMasterValues.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPMasterValues.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="ORM\FPMasterValues.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPMasterValues.edmx</DependentUpon>
+      <LastGenOutput>FPMasterValues.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ORM\FPMasterValues.edmx.diagram">
+      <DependentUpon>FPMasterValues.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\FPMasterValues.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPMasterValues.edmx</DependentUpon>
+      <LastGenOutput>FPMasterValues.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="ORM\FPUserCredential.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPUserCredential.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ORM\FPUserCredential.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPUserCredential.edmx</DependentUpon>
+      <LastGenOutput>FPUserCredential.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ORM\FPUserCredential.edmx.diagram">
+      <DependentUpon>FPUserCredential.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\FPUserCredential.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPUserCredential.edmx</DependentUpon>
+      <LastGenOutput>FPUserCredential.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="ORM\FPUserProfile.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPUserProfile.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ORM\FPUserProfile.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPUserProfile.edmx</DependentUpon>
+      <LastGenOutput>FPUserProfile.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ORM\FPUserProfile.edmx.diagram">
+      <DependentUpon>FPUserProfile.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\FPUserProfile.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPUserProfile.edmx</DependentUpon>
+      <LastGenOutput>FPUserProfile.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
+      <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
+      <Name>FundingPilotSystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingFramework\FundingPilot.LoggingFramework.csproj">
+      <Project>{f40fee50-378e-4101-baed-f5932310ade7}</Project>
+      <Name>FundingPilot.LoggingFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+
+/* common defines */   
+body {
+	height:100%;
+	color: #000000; 
+}
+.container-full header, .container-full section { 
+	/* max-width:100%;  add this line to remove margins on desktop-large screens higher than tablet */
+	margin-bottom:2px;
+	height:100%;
+}
+.no-padding { padding:0; }
+
+
+/* Navbar */
+	.navbar { box-shadow:none; border:none; background:none; margin-bottom:auto; }
+	.navbar-inverse .navbar-brand { color: #FFF; }
+/* navbar ends */
+
+
+/* Height of the top container to show the content for demo - remove this CSS when fix height not require */
+.fixHeight {
+	/*min-height:50px;*/
+}
+
+
+/* Background Colors of the container */
+.blue { 
+	background-color:#FFF; 
+	border: 1px solid rgba(0,0,0,0.25);
+}
+
+.green { 
+	background-color:#FFF; 
+	border: 1px solid rgba(0,0,0,0.25);
+}
+
+.black {
+	background-image:-webkit-gradient(linear,left 0,left 100%,from(#3c3c3c),to(#222));
+	background-image:-webkit-linear-gradient(top,#3c3c3c,0%,#222,100%);
+	background-image:-moz-linear-gradient(top,#3c3c3c 0,#222 100%);
+	background-image:linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+	background-repeat:repeat-x;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c',endColorstr='#ff222222',GradientType=0);
+	border-color: #101010;
+}
+.mainContentBackground {
+	background-color:#FFF; 
+	border: 1px solid rgba(0,0,0,0.25);
+	padding: 1px 0;
+}
+
+
+/* Main container and aside */
+	/* Height of main and aside to show the content for demo - remove this CSS when fix height not require */
+	.main-content-left, .main-content-right { 
+		min-height: 500px;
+		padding:15px;
+	}
+
+	.main-content-left  {
+		margin: 0 auto 3px 0;
+	}
+
+	@media (min-width: 992px) {
+	  .main-content-left  {
+		margin: 0 3px auto 0;	
+	  }
+	}
+/* end of main container */
+

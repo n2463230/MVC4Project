@@ -1,0 +1,33 @@
+﻿.loginPageBody
+{
+    background-color: #FFFFFF;
+    color: #000000;   
+    font-size: 1em;
+    line-height: 18px;
+    margin: 0 auto;
+}
+
+.loginContainer
+{
+    margin: 200px auto;
+    width: 500px !important;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.loginHeader
+{
+    background: none repeat scroll 0 0 #385179;
+    box-shadow: 0 -20px 25px rgba(0, 0, 0, 0.2) inset;
+    height: 40px;
+    padding-top:10px;
+}
+
+.loginBody
+{
+    background-color: #FFFFFF;    
+    min-height: 250px;
+    height: auto !important;
+    width: 500px;
+}
