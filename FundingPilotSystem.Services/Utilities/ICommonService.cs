@@ -1,4 +1,4 @@
-﻿using FundingPilotSystem.Domain.SolutionDto;
+﻿using FundingPilotSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Services.Utilities
+namespace FundingPilotSystem.Services
 {
     [ServiceContract]
     public interface ICommonService

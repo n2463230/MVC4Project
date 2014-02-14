@@ -1,0 +1,202 @@
+﻿@model FundingPilotSystem.VM.MasterConfigurationViewModel
+@using Telerik.Web.Mvc.UI
+@using FundingPilotSystem.Utilities
+@using FundingPilotSystem.Common;
+@{
+    ViewBag.Title = CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "MasterConfiguration");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@Html.Style("~/Contents/Styles/SystemConfiguration/MasterConfiguration.css")
+@using (Html.BeginForm())
+{
+    <div id="divHiddenFields">
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.CreatedOn)
+        @Html.HiddenFor(m => m.Id)
+    </div>
+    @Html.AntiForgeryToken()
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <div class="p_header">
+                        <span class="pageHeader">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "MasterConfiguration")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span11">
+            <div class="control-group">
+                <div class="controls-row">
+                    @Html.Partial("MessageRegionPartial", Model.ModelMessage)
+                </div>
+                <div class="controls-row">
+                    <span class="required-field-note" style="float: right;">
+                        <span class="required-field-symbol">*</span>
+                        @CustomLocalizationUtility.GetKeyValue("CommonResource", "IndicatesARequiredField")
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="controls-row">
+                <div class="span5">
+                    <div class="control-group">
+                        <div class="span8">
+                            <div class="controls-row">
+                                <span class="pageHeader">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "PasswordConfiguration")</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.MinPasswordLength)
+                            <span class="required-field-symbol">*</span>
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.MinPasswordLength, new { @class = "integer" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.MinPasswordLength)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.MaxPasswordLife)
+                            <span class="required-field-symbol">*</span>
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.MaxPasswordLife, new { @class = "integer" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.MaxPasswordLife)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.MaxLogonRetry)
+                            <span class="required-field-symbol">*</span>
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.MaxLogonRetry, new { @class = "integer" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.MaxLogonRetry)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.PasswordHistoryCount)
+                            <span class="required-field-symbol" id="spanError">*</span>
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.PasswordHistoryCount, new { @class = "integer" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.PasswordHistoryCount)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.CheckBoxFor(model => model.RequireNumberInPassword)
+                            @Html.LabelFor(model => model.RequireNumberInPassword)
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.RequireNumberInPassword)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.CheckBoxFor(model => model.RequireSpecialCharacterInPassword)
+                            @Html.LabelFor(model => model.RequireSpecialCharacterInPassword)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.CheckBoxFor(model => model.AllowReusePasswordFromHistory, new { @onclick = "onAllowReusePasswordFromHistoryClick(this);" })
+                            @Html.LabelFor(model => model.AllowReusePasswordFromHistory)
+                        </div>
+                    </div>
+                </div>
+                <div class="span5">
+                    <div class="control-group">
+                        <div class="span8">
+                            <div class="controls-row">
+                                <span class="pageHeader">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "EmailNotificationAccount")</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.DefaultEmailAddress)
+                        </div>
+                        <div class="controls-row">
+                            @Html.EditorFor(model => model.DefaultEmailAddress)
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.DefaultEmailAddress)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.OutgoingEmailServer)
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.OutgoingEmailServer)
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.OutgoingEmailServer)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.SenderMailAddress)
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.SenderMailAddress)
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.SenderMailAddress)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.EmailAccountUserName)
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.EmailAccountUserName, new { autocomplete = "off" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.EmailAccountUserName)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls-row">
+                            @Html.LabelFor(model => model.EmailAccountUserPassword)
+                        </div>
+                        <div class="controls-row">
+                            @Html.TextBoxFor(model => model.EmailAccountUserPassword, new { autocomplete = "off", type = "password" })
+                        </div>
+                        <div class="controls-row">
+                            @Html.ValidationMessageFor(model => model.EmailAccountUserPassword)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="row">
+                <hr />
+            </div>
+        </div>
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <input type="submit" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblSave")" class="t-button button" />
+                    <input type="button" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblCancel")" onclick="document.location.href = '@Url.Action("Save")'" class="t-button button" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Html.Script("~/Contents/Scripts/SystemConfiguration/MasterConfiguration.js")

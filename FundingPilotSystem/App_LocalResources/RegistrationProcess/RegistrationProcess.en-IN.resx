@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloseButtonTextEmailConfirmation" xml:space="preserve">
+    <value>Not confirmed</value>
+  </data>
+  <data name="ConfirmButtonTextEmailConfirmation" xml:space="preserve">
+    <value>Yes confirmed</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
+  </data>
+  <data name="HeaderUserRegistration" xml:space="preserve">
+    <value>User Registration</value>
+  </data>
+  <data name="MessageEmailConfirmation" xml:space="preserve">
+    <value>Please make sure email address provided is correct and you have access to it</value>
+  </data>
+  <data name="MessageRegistrationDone" xml:space="preserve">
+    <value>Congratulations ! Your registration request is accepted.An e-mail for activating the registration will be sent soon.</value>
   </data>
   <data name="NewsletterSubsicription" xml:space="preserve">
     <value>Subscribe to newsletter </value>
@@ -132,6 +147,9 @@
   <data name="ResidingCountry" xml:space="preserve">
     <value>Country of residence</value>
   </data>
+  <data name="TitleEmailConfirmation" xml:space="preserve">
+    <value>Please confirm your email address</value>
+  </data>
   <data name="UserEmail" xml:space="preserve">
     <value>Email address</value>
   </data>
@@ -140,6 +158,9 @@
   </data>
   <data name="ValidateCountryOfResidence" xml:space="preserve">
     <value>Country of residence is required</value>
+  </data>
+  <data name="ValidationEmailAddressRequestedForRegistration" xml:space="preserve">
+    <value>The entered email is already requested for registration</value>
   </data>
   <data name="ValidationEmailisRequired" xml:space="preserve">
     <value>Email is required</value>

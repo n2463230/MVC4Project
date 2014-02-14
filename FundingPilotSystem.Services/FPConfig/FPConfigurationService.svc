@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FundingPilotSystem.Services.FPConfig.FPConfigurationService" CodeBehind="FPConfigurationService.svc.cs" %>

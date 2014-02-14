@@ -1,26 +1,54 @@
-﻿using FundingPilotSystem.Domain.FPUserProfile;
-using FundingPilotSystem.UnifiedDataStore.DataProviders;
+﻿using AutoMapper;
+using FundingPilotSystem.BO;
+using FundingPilotSystem.Domain;
+using FundingPilotSystem.UnifiedDataStore;
 
 
-namespace FundingPilotSystem.DAL.FPUserProfile.Registration
+namespace FundingPilotSystem.DAL
 {
+ 
+    /// <summary>
+    /// This class provides user registration related functionalities
+    /// </summary>
     public class RegistrationProviderDAL
     {
-        public int SaveUserRegistrationRequest(tblUserRegistrationRequestDto userRegistrationRequestDto)
+
+        /// <summary>
+        /// Saves user registration request
+        /// </summary>
+        /// <param name="userRegistrationRequestBO"></param>
+        /// <returns></returns>
+        public int SaveUserRegistrationRequest(UserRegistrationRequestBO userRegistrationRequestBO)
         {
-            int result = 0;
+            tblUserRegistrationRequestDto tblUserRegRequestDto = new tblUserRegistrationRequestDto();
+            Mapper.CreateMap<UserRegistrationRequestBO, tblUserRegistrationRequestDto>();
+            Mapper.Map(userRegistrationRequestBO, tblUserRegRequestDto);
+
             RegistrationProvider objUserProfileDataProvider = new RegistrationProvider();
-            result = objUserProfileDataProvider.SaveUserRegistrationRequest(userRegistrationRequestDto);
-            return result;
-        }
-        public int SaveRegisteredUser(tblRegisteredUserDto registeredUserDto)
-        {
-            int result = 0;
-            RegistrationProvider objUserProfileDataProvider = new RegistrationProvider();
-            result = objUserProfileDataProvider.SaveRegisteredUser(registeredUserDto);
-            return result;
+            return objUserProfileDataProvider.SaveUserRegistrationRequest(tblUserRegRequestDto);
+            
         }
 
+        /// <summary>
+        /// Saves registered users (records moves to this table after email varification process completed successfully)
+        /// </summary>
+        /// <param name="registeredUserBO"></param>
+        /// <returns></returns>
+        public int SaveRegisteredUser(RegisteredUserBO registeredUserBO)
+        {
+            tblRegisteredUserDto tblRegUserDto = new tblRegisteredUserDto();
+            Mapper.CreateMap<RegisteredUserBO, tblRegisteredUserDto>();
+            Mapper.Map(registeredUserBO, tblRegUserDto);
+
+            RegistrationProvider objUserProfileDataProvider = new RegistrationProvider();
+            return objUserProfileDataProvider.SaveRegisteredUser(tblRegUserDto);
+        }
+
+        /// <summary>
+        /// Checks for duplicate email address (User id)
+        /// </summary>
+        /// <param name="emailAddress"></param>
+        /// <returns></returns>
         public bool isDuplicateUserEmailAddress(byte[] emailAddress)
         {
             RegistrationProvider objUserProfileDataProvider = new RegistrationProvider();

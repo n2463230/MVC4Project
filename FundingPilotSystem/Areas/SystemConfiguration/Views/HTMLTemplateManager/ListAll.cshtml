@@ -1,0 +1,209 @@
+﻿@using FundingPilotSystem.Common;
+@using Telerik.Web.Mvc.UI;
+@using FundingPilotSystem;
+@using FundingPilotSystem.Common;
+
+@model FundingPilotSystem.VM.PageSpecificPlaceholderConfigVM
+
+@{
+    ViewBag.Title = CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblManageStaticHTMLPage");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@Html.Style("~/Contents/Styles/HTMLTemplateManager/HTMLTemplateManager.min.css")
+<div style="margin-top:20px;">
+    <div id="hiddenFields">
+        @Html.Hidden("hdnPageSpecificPlaceholder")
+        @Html.Hidden("hdnPageSpecificPlaceholderId")
+        @Html.Hidden("hdnModuleId")
+        @Html.Hidden("hdnModuleName")
+        @Html.Hidden("hdnTopFrameHTML")
+        @Html.Hidden("hdnLeftFrameHTML")
+        @Html.Hidden("hdnRightFrameHTML")
+        @Html.Hidden("hdnBottomFrameHTML")
+    </div>
+    <div class="row col99">
+        <h1>@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblCustomizeStaticContents")</h1>
+    </div>
+    <div id="dvHtmlContentDetails" class="clsDisplayNone">
+        <div id="dvModuleName"></div>
+        <div style="margin-bottom:7px;">
+            <span class="clsFloatLeft">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "TopFrameHtml") :</span>
+            <div id="dvTopFrameHtml" class="clsDisplayNone">
+                <span id="spanTopFrameHtml" style="margin-right:10px;"></span>
+                <span><input type="button" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Delete")" onclick="OnPlaceholderConfigDelete(@Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Top), '@SolutionEnums.PageSpecificPlaceholder.Top.ToString()');" /></span>
+            </div>
+            <span id="uplodTopFrameHtml" class="clsDisplayNone">
+                @(Html.Telerik().Upload()
+                        .Name("TopFrameHTMLTemplateUpload")
+                        .Async(async => async.Save("SaveTopFrameHTMLTemplate", "HTMLTemplateManager"
+                                    , new
+                                    {
+                                        pageSpecificPlaceholder = (int)SolutionEnums.PageSpecificPlaceholder.Top,
+                                        pageSpecificPlaceholderId = 0,
+                                        moduleId = 0,
+                                        moduleName = string.Empty,
+                                        topFrameHTML = string.Empty,
+                                        leftFrameHTML = string.Empty,
+                                        rightFrameHTML = string.Empty,
+                                        bottomFrameHTML = string.Empty
+                                    }).AutoUpload(true)
+                                    .Remove("Delete", "HTMLTemplateManager"
+                                                , new
+                                                {
+                                                    pageSpecificPlaceholderId = 0,
+                                                    pageSpecificPlaceholder = @Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Top),
+                                                    moduleName = string.Empty
+                                                }))
+                    .Multiple(false)
+                    .ClientEvents(events => events
+                        .OnSelect("OnPageSpecificPlaceholderSelect")
+                        .OnUpload("OnPageSpecificPlaceholderUpload")
+                        .OnRemove("OnPageSpecificPlaceholderRemove")
+                        .OnSuccess("OnPageSpecificPlaceholderUploadSuccess"))
+                )
+            </span>
+        </div>
+        <div style="margin-bottom:7px;">
+            <span class="clsFloatLeft">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "LeftFrameHtml") :</span>
+            <div id="dvLeftFrameHtml" class="clsDisplayNone">
+                <span id="spanLeftFrameHtml" style="margin-right:10px;"></span>
+                <span><input type="button" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Delete")" onclick="OnPlaceholderConfigDelete(@Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Left), '@SolutionEnums.PageSpecificPlaceholder.Left.ToString()');" /></span>
+            </div>
+            <span id="uplodLeftFrameHtml" class="clsDisplayNone">
+                @(Html.Telerik().Upload()
+                        .Name("LeftFrameHTMLTemplateUpload")
+                        .Multiple(false)
+                        .Async(async => async.Save("SaveLeftFrameHTMLTemplate", "HTMLTemplateManager"
+                            , new
+                            {
+                                pageSpecificPlaceholder = (int)SolutionEnums.PageSpecificPlaceholder.Left,
+                                pageSpecificPlaceholderId = 0,
+                                moduleId = 0,
+                                moduleName = string.Empty,
+                                topFrameHTML = string.Empty,
+                                leftFrameHTML = string.Empty,
+                                rightFrameHTML = string.Empty,
+                                bottomFrameHTML = string.Empty
+                            }).AutoUpload(true)
+                            .Remove("Delete", "HTMLTemplateManager"
+                                                , new
+                                                {
+                                                    pageSpecificPlaceholderId = 0,
+                                                    pageSpecificPlaceholder = @Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Left),
+                                                    moduleName = string.Empty
+                                                }))
+
+                        .ClientEvents(events => events
+                            .OnSelect("OnPageSpecificPlaceholderSelect")
+                            .OnUpload("OnPageSpecificPlaceholderUpload")
+                            .OnRemove("OnPageSpecificPlaceholderRemove")
+                            .OnSuccess("OnPageSpecificPlaceholderUploadSuccess"))
+                )
+            </span>
+        </div>
+        <div style="margin-bottom:7px;">
+            <span class="clsFloatLeft">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "RightFrameHtml") :</span>
+            <div id="dvRightFrameHtml" class="clsDisplayNone">
+                <span id="spanRightFrameHtml" style="margin-right:10px;"></span>
+                <span><input type="button" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Delete")" onclick="OnPlaceholderConfigDelete(@Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Right), '@SolutionEnums.PageSpecificPlaceholder.Right.ToString()');" /></span>
+            </div>
+            <span id="uplodRightFrameHtml" class="clsDisplayNone">
+                @(Html.Telerik().Upload()
+                        .Name("RightFrameHTMLTemplateUpload")
+                        .Async(async => async.Save("SaveRightFrameHTMLTemplate", "HTMLTemplateManager"
+                            , new
+                            {
+                                pageSpecificPlaceholder = (int)SolutionEnums.PageSpecificPlaceholder.Right,
+                                pageSpecificPlaceholderId = 0,
+                                moduleId = 0,
+                                moduleName = string.Empty,
+                                topFrameHTML = string.Empty,
+                                leftFrameHTML = string.Empty,
+                                rightFrameHTML = string.Empty,
+                                bottomFrameHTML = string.Empty
+                            }).AutoUpload(true)
+                            .Remove("Delete", "HTMLTemplateManager"
+                                                , new
+                                                {
+                                                    pageSpecificPlaceholderId = 0,
+                                                    pageSpecificPlaceholder = @Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Right),
+                                                    moduleName = string.Empty
+                                                }))
+                         .Multiple(false)
+                        .ClientEvents(events => events
+                            .OnSelect("OnPageSpecificPlaceholderSelect")
+                            .OnUpload("OnPageSpecificPlaceholderUpload")
+                            .OnRemove("OnPageSpecificPlaceholderRemove")
+                            .OnSuccess("OnPageSpecificPlaceholderUploadSuccess"))
+                )
+            </span>
+        </div>
+        <div style="margin-bottom:20px;">
+            <span class="clsFloatLeft">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "BottomFrameHtml") :</span>
+            <div id="dvBottomFrameHtml" class="clsDisplayNone">
+                <span id="spanBottomFrameHtml" style="margin-right:10px;"></span>
+                <span><input type="button" value="@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Delete")" onclick="OnPlaceholderConfigDelete(@Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Bottom), '@SolutionEnums.PageSpecificPlaceholder.Bottom.ToString()');" /></span>
+            </div>
+            <span id="uplodBottomFrameHtml" class="clsDisplayNone">
+                @(Html.Telerik().Upload()
+                        .Name("BottomFrameHTMLTemplateUpload")
+                        .Async(async => async.Save("SaveBottomFrameHTMLTemplate", "HTMLTemplateManager"
+                                    , new
+                                    {
+                                        pageSpecificPlaceholder = (int)SolutionEnums.PageSpecificPlaceholder.Bottom,
+                                        pageSpecificPlaceholderId = 0,
+                                        moduleId = 0,
+                                        moduleName = string.Empty,
+                                        topFrameHTML = string.Empty,
+                                        leftFrameHTML = string.Empty,
+                                        rightFrameHTML = string.Empty,
+                                        bottomFrameHTML = string.Empty
+                                    }).AutoUpload(true)
+                                    .Remove("Delete", "HTMLTemplateManager"
+                                        , new
+                                        {
+                                            pageSpecificPlaceholderId = 0
+                                              ,
+                                            pageSpecificPlaceholder = @Convert.ToInt32(SolutionEnums.PageSpecificPlaceholder.Bottom)
+                                              ,
+                                            moduleName = string.Empty
+                                        }))
+                        .Multiple(false)
+                        .ClientEvents(events => events
+                            .OnSelect("OnPageSpecificPlaceholderSelect")
+                            .OnUpload("OnPageSpecificPlaceholderUpload")
+                            .OnRemove("OnPageSpecificPlaceholderRemove")
+                            .OnSuccess("OnPageSpecificPlaceholderUploadSuccess"))
+                )
+            </span>
+        </div>
+    </div>
+    <div>
+        @(Html.Telerik().Grid<FundingPilotSystem.VM.PageSpecificPlaceholderConfigVM>()
+            .Name("PageSpecificPlaceholderConfigGrid")
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("ListAllAjax", "HTMLTemplateManager"))
+            .Columns(columns =>
+                        {
+                            columns.Bound(column => column.ModuleName);
+                            columns.Bound(column => column.TopFrameHTML);
+                            columns.Bound(column => column.LeftFrameHTML);
+                            columns.Bound(column => column.RightFrameHTML);
+                            columns.Bound(column => column.BottomFrameHTML);
+                            columns.Bound(column => column.ModuleId).ClientTemplate("<button id='btnEdit' onclick='OnPageSpecificPlaceholderEdit(<#= Id#>,<#= ModuleId#>,\"<#= ModuleName#>\",\"<#= TopFrameHTML#>\", \"<#= LeftFrameHTML#>\",\"<#= RightFrameHTML#>\",\"<#= BottomFrameHTML#>\")'>" + CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblEdit") + "</button>")
+                                    .Title(CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblEdit"))
+                                    .Width(80)
+                                    .Filterable(false)
+                                    .Sortable(false)
+                            .Filterable(false)
+                            .Sortable(false);
+                        })
+            .Sortable()
+            .Filterable()
+            .Selectable()
+            .HtmlAttributes(new { style = "width:95%;" })
+            .Scrollable(t => t.Height("auto"))
+            .Resizable(resizing => resizing.Columns(true))
+            .Pageable(paging => paging.PageSize(50).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom)))
+    </div>
+</div>
+@Html.Script("~/Contents/Scripts/HTMLTemplateManager/HTMLTemplateManager.min.js")

@@ -90,6 +90,8 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Module" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResourceFileName" Type="varchar" MaxLength="255" />
+          <Property Name="ResourceFolderName" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="tblUserStatus">
           <Key>
@@ -209,6 +211,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Module" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ResourceFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ResourceFolderName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblUserStatus">
           <Key>
@@ -230,13 +234,13 @@
           <EntitySet Name="tblCompanyIndustryLists" EntityType="Self.tblCompanyIndustryList" />
           <EntitySet Name="tblCountryLists" EntityType="Self.tblCountryList" />
           <EntitySet Name="tblCountryOfOperations" EntityType="Self.tblCountryOfOperation" />
-          <EntitySet Name="tblKYCStatus1" EntityType="FPMasterValuesModel.tblKYCStatus" />
+          <EntitySet Name="tblKYCStatuses" EntityType="FPMasterValuesModel.tblKYCStatus" />
           <EntitySet Name="tblPublicAuthorityIndustryLists" EntityType="Self.tblPublicAuthorityIndustryList" />
           <EntitySet Name="tblSupportedAccountTypes" EntityType="Self.tblSupportedAccountType" />
           <EntitySet Name="tblSupportedCurrencies" EntityType="Self.tblSupportedCurrency" />
           <EntitySet Name="tblSupportedLanguages" EntityType="Self.tblSupportedLanguage" />
           <EntitySet Name="tblSystemModules" EntityType="Self.tblSystemModule" />
-          <EntitySet Name="tblUserStatus1" EntityType="FPMasterValuesModel.tblUserStatus" />
+          <EntitySet Name="tblUserStatuses" EntityType="FPMasterValuesModel.tblUserStatus" />
           <EntitySet Name="tblUserTypes" EntityType="Self.tblUserType" />
         </EntityContainer>
       </Schema>
@@ -292,7 +296,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblKYCStatus1">
+          <EntitySetMapping Name="tblKYCStatuses">
             <EntityTypeMapping TypeName="FPMasterValuesModel.tblKYCStatus">
               <MappingFragment StoreEntitySet="tblKYCStatus">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -337,12 +341,14 @@
           <EntitySetMapping Name="tblSystemModules">
             <EntityTypeMapping TypeName="FPMasterValuesModel.tblSystemModule">
               <MappingFragment StoreEntitySet="tblSystemModules">
+                <ScalarProperty Name="ResourceFolderName" ColumnName="ResourceFolderName" />
+                <ScalarProperty Name="ResourceFileName" ColumnName="ResourceFileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Module" ColumnName="Module" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblUserStatus1">
+          <EntitySetMapping Name="tblUserStatuses">
             <EntityTypeMapping TypeName="FPMasterValuesModel.tblUserStatus">
               <MappingFragment StoreEntitySet="tblUserStatus">
                 <ScalarProperty Name="Id" ColumnName="Id" />

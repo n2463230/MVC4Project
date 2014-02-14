@@ -1,4 +1,5 @@
-﻿using FundingPilotSystem.Domain.FPMasterValues;
+﻿using FundingPilotSystem.Common;
+using FundingPilotSystem.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace FundingPilotSystem.Utilities
 {
     public static class CacheManager
     {
-        private static List<tblCountryListDto> _countryList;
-        public static List<tblCountryListDto> CountryList
+        private static List<CountryListVM> _countryList;
+        public static List<CountryListVM> CountryList
         {
             get
             {
@@ -20,7 +21,7 @@ namespace FundingPilotSystem.Utilities
                 }
                 else
                 {
-                    _countryList = (List<tblCountryListDto>)HttpContext.Current.Cache.Get("CacheManager.CountryList");
+                    _countryList = (List<CountryListVM>)HttpContext.Current.Cache.Get("CacheManager.CountryList");
                 }
 
                 return _countryList;
@@ -33,8 +34,8 @@ namespace FundingPilotSystem.Utilities
             }
         }
 
-        private static List<tblCountryOfOperationDto> _countryOfOperationList;
-        public static List<tblCountryOfOperationDto> CountryOfOperationList
+        private static List<CountryOfOperationVM> _countryOfOperationList;
+        public static List<CountryOfOperationVM> CountryOfOperationList
         {
             get
             {
@@ -44,7 +45,7 @@ namespace FundingPilotSystem.Utilities
                 }
                 else
                 {
-                    _countryOfOperationList = (List<tblCountryOfOperationDto>)HttpContext.Current.Cache.Get("CacheManager.CountryOfOperationList");
+                    _countryOfOperationList = (List<CountryOfOperationVM>)HttpContext.Current.Cache.Get("CacheManager.CountryOfOperationList");
                 }
 
                 return _countryOfOperationList;
@@ -56,5 +57,53 @@ namespace FundingPilotSystem.Utilities
                 HttpContext.Current.Cache.Add("CacheManager.CountryOfOperationList", _countryOfOperationList, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Normal, null);
             }
         }
+
+        private static List<SystemModuleVM> _systemModuleVMList;
+        public static List<SystemModuleVM> SystemModuleVMList
+        {
+            get
+            {
+                if (HttpContext.Current.Cache.Get("CacheManager.SystemModuleVMList") == null)
+                {
+                    _systemModuleVMList = null;
+                }
+                else
+                {
+                    _systemModuleVMList = (List<SystemModuleVM>)HttpContext.Current.Cache.Get("CacheManager.SystemModuleVMList");
+                }
+
+                return _systemModuleVMList;
+            }
+            set
+            {
+                _systemModuleVMList = value;
+                HttpContext.Current.Cache.Remove("CacheManager.SystemModuleVMList");
+                HttpContext.Current.Cache.Add("CacheManager.SystemModuleVMList", _systemModuleVMList, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Normal, null);
+            }
+        }
+
+        private static List<ProcessEmailTemplateVM> _processEmailTemplateVMList;
+        public static List<ProcessEmailTemplateVM> ProcessEmailTemplateVMList
+        {
+            get
+            {
+                if (HttpContext.Current.Cache.Get("CacheManager.ProcessEmailTemplateVMList") == null)
+                {
+                    _processEmailTemplateVMList = null;
+                }
+                else
+                {
+                    _processEmailTemplateVMList = (List<ProcessEmailTemplateVM>)HttpContext.Current.Cache.Get("CacheManager.ProcessEmailTemplateVMList");
+                }
+
+                return _processEmailTemplateVMList;
+            }
+            set
+            {
+                _processEmailTemplateVMList = value;
+                HttpContext.Current.Cache.Remove("CacheManager.ProcessEmailTemplateVMList");
+                HttpContext.Current.Cache.Add("CacheManager.ProcessEmailTemplateVMList", _processEmailTemplateVMList, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Normal, null);
+            }
+        }        
     }
 }

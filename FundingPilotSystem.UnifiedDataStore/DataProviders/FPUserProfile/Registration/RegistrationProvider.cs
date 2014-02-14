@@ -1,19 +1,27 @@
 ﻿using AutoMapper;
-using FundingPilotSystem.Domain.FPUserProfile;
-using FundingPilotSystem.Domain.SolutionDto;
-using FundingPilotSystem.Domain.SolutionUtilities;
+using FundingPilotSystem.Domain;
 using FundingPilotSystem.UnifiedDataStore.ORM;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FundingPilotSystem.Common;
 
-
-namespace FundingPilotSystem.UnifiedDataStore.DataProviders
+namespace FundingPilotSystem.UnifiedDataStore
 {
+
+    /// <summary>
+    /// This class performs registration process related operations for funding pilot system
+    /// </summary>
     public class RegistrationProvider
     {
+        /// <summary>
+        /// Saves registration request
+        /// </summary>
+        /// <param name="userRegistrationRequestDto"></param>
+        /// <returns></returns>
         public int SaveUserRegistrationRequest(tblUserRegistrationRequestDto userRegistrationRequestDto)
         {
             Mapper.CreateMap<tblUserRegistrationRequestDto, tblUserRegistrationRequest>();
@@ -35,6 +43,11 @@ namespace FundingPilotSystem.UnifiedDataStore.DataProviders
             return result;
         }
 
+        /// <summary>
+        /// Saves registered users (records moves to this table after email varification process completed successfully)
+        /// </summary>
+        /// <param name="registeredUserDto"></param>
+        /// <returns></returns>
         public int SaveRegisteredUser(tblRegisteredUserDto registeredUserDto)
         {
             Mapper.CreateMap<tblRegisteredUserDto, tblRegisteredUser>();
@@ -56,9 +69,13 @@ namespace FundingPilotSystem.UnifiedDataStore.DataProviders
             return result;
         }
 
+        /// <summary>
+        /// Checks for duplicate email address (User id)
+        /// </summary>
+        /// <param name="userEmailAddress"></param>
+        /// <returns></returns>
         public bool isDuplicateUserEmailAddress(byte[] userEmailAddress)
-        {
-
+        {            
             using (var dbContext = new FPUserProfileEntities())
             {
                 IEnumerable<tblUserRegistrationRequest> list = dbContext.tblUserRegistrationRequests.Where(p => p.Id > 0);

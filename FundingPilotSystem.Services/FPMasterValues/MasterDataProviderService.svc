@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="FundingPilotSystem.Services.FPMasterValues.MasterDataProviderService" CodeBehind="MasterDataProviderService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FundingPilotSystem.Services.MasterDataProviderService" CodeBehind="MasterDataProviderService.svc.cs" %>

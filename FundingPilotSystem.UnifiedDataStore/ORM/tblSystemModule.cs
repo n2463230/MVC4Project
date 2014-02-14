@@ -16,5 +16,7 @@ namespace FundingPilotSystem.UnifiedDataStore.ORM
     {
         public int Id { get; set; }
         public string Module { get; set; }
+        public string ResourceFileName { get; set; }
+        public string ResourceFolderName { get; set; }
     }
 }

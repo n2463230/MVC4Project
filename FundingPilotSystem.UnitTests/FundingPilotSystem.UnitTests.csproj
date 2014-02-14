@@ -35,13 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\P2P-Loan\P2P-SuggestedArchitecture\P2P.SuggestedArchitecture\P2P.UnifiedDataStore\bin\Debug\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\P2P-Loan\P2P-SuggestedArchitecture\P2P.SuggestedArchitecture\P2P.UnifiedDataStore\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -56,7 +51,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FPConfig\MasterConfigurationBLLTest.cs" />
+    <Compile Include="FPConfig\MasterConfigurationProviderDALTest.cs" />
+    <Compile Include="FPConfig\MasterConfigurationProviderTest.cs" />
+    <Compile Include="FPUserCredential\UserCredentialBLLTest.cs" />
+    <Compile Include="FPUserCredential\UserCredentialProviderDALTest.cs" />
     <Compile Include="FPUserProfile\Registration\RegistrationProviderDALTest.cs" />
+    <Compile Include="FPUserProfile\Registration\RegistrationBLLTest.cs" />
     <Compile Include="MasterDataProviderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FPUserProfile\Registration\RegistrationProviderTest.cs" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\FundingPilotSystem.BO\FundingPilotSystem.BO.csproj">
       <Project>{79791979-adc7-470c-b748-2277acce3d72}</Project>
       <Name>FundingPilotSystem.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FundingPilotSystem.Common\FundingPilotSystem.Common.csproj">
+      <Project>{a64d1544-a212-49f2-b2b0-233b316ee574}</Project>
+      <Name>FundingPilotSystem.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FundingPilotSystem.DAL\FundingPilotSystem.DAL.csproj">
       <Project>{aeacb441-cc57-48ed-894f-9b26c2098994}</Project>

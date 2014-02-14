@@ -1,18 +1,16 @@
-﻿using FundingPilotSystem.Domain;
-using FundingPilotSystem.Domain.FPMasterValues;
-using FundingPilotSystem.Domain.SolutionUtilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using FundingPilotSystem.Domain.SolutionDto;
+using FundingPilotSystem.Common;
 
-namespace FundingPilotSystem.VM.FPUserProfile
+
+namespace FundingPilotSystem.VM
 {
-    [DataContract()]
+    [DataContract()] 
     public class UserRegistrationRequestsViewModel : CommonModel
     {
         [DataMember]
@@ -34,6 +32,7 @@ namespace FundingPilotSystem.VM.FPUserProfile
         [CustomRequiredAttribute("RegistrationProcess", "ValidationPasswordIsRequired")]
         [DataType(DataType.Password)]
         [LocalizedDisplayNameAttribute("RegistrationProcess", "Password")]
+
         public string Password { get; set; }
 
         [DataMember]
@@ -62,6 +61,9 @@ namespace FundingPilotSystem.VM.FPUserProfile
         public int CountryOfRegistration { get; set; }
 
         [DataMember]
-        public List<tblCountryOfOperationDto> CountriesOfOperation { get; set; }
+        public List<CountryOfOperationVM> CountriesOfOperation { get; set; }
+       
+
+        public AlertModel AlertModel { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FundingPilotSystem.UnifiedDataStore.DataProviders;
+using FundingPilotSystem.UnifiedDataStore;
 
 namespace FundingPilotSystem.UnitTests
 {

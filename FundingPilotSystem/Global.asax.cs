@@ -1,6 +1,8 @@
-﻿using FundingPilotSystem.Domain.SolutionUtilities;
+﻿using FundingPilotSystem.Common;
+using FundingPilotSystem.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -21,9 +23,28 @@ namespace FundingPilotSystem
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            DataAnnotationsModelValidatorProvider.RegisterAdapter(
-            typeof(CustomRequiredAttribute),
-            typeof(RequiredAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CustomRequiredAttribute)
+                                            , typeof(RequiredAttributeAdapter));
+
+            CommonUtility.SetCurrentCulture(CultureInfo.CurrentCulture.Name);
+        }
+
+        protected void Session_Start()
+        {
+            //Set this to access localization
+            var _masterDataProviderService = FundingPilotSystem.Utilities.ServiceReferences.GetMasterProviderServiceClient();
+            if (CustomLocalizationUtility.SystemModuleList == null)
+            {
+                var systemModuleList = _masterDataProviderService.GetSystemModules();
+                CustomLocalizationUtility.SystemModuleList = (from module in systemModuleList
+                                                              select new FundingPilotSystem.Common.SystemModule
+                                                              {
+                                                                  Id = module.Id,
+                                                                  Module = module.Module,
+                                                                  ResourceFileName = module.ResourceFileName,
+                                                                  ResourceFolderName = module.ResourceFolderName,
+                                                              }).ToList();
+            }
         }
     }
 }

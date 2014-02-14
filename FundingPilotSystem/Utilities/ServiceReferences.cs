@@ -1,4 +1,4 @@
-﻿using FundingPilotSystem.Domain.SolutionDto;
+﻿using FundingPilotSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
-using MasterDataProviderService= FundingPilotSystem.Services.FPMasterValues.MasterDataProviderService;
-using RegistrationService = FundingPilotSystem.Services.FPUserProfile.RegistrationService;
+using MasterDataProviderService = FundingPilotSystem.Services.MasterDataProviderService;
+using RegistrationService = FundingPilotSystem.Services.RegistrationService;
+using AutoMapper;
 namespace FundingPilotSystem.Utilities
 {
     public static class ServiceReferences
@@ -21,6 +22,7 @@ namespace FundingPilotSystem.Utilities
             get
             {
                 return CurrentFPApplicationContext.GetFPApplication();
+
             }
         }
         /// <summary>
@@ -38,10 +40,11 @@ namespace FundingPilotSystem.Utilities
         /// Get MasterProviderServiceClient
         /// </summary>
         private static MasterDataProviderService.MasterDataProviderServiceClient _masterProviderServiceClient;
-       
+
         internal static MasterDataProviderService.IMasterDataProviderService GetMasterProviderServiceClient()
         {
-           
+            try
+            {
                 if (_masterProviderServiceClient == null)
                 {
                     System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(MasterDataProviderServiceUrl);
@@ -57,7 +60,11 @@ namespace FundingPilotSystem.Utilities
                 }
                 _masterProviderServiceClient.SetFPApplication(ServiceReferences.FPApplication);
                 return _masterProviderServiceClient;
-            
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -92,9 +99,45 @@ namespace FundingPilotSystem.Utilities
 
                 _registrationServiceClient = new RegistrationService.RegistrationServicesClient(binding, address);
             }
-            _registrationServiceClient.SetFPApplication(ServiceReferences.FPApplication);
+           _registrationServiceClient.SetFPApplication(ServiceReferences.FPApplication);
             return _registrationServiceClient;
 
+        }
+
+
+        /// <summary>
+        /// Master configuration Url
+        /// </summary>
+        private static string FPConfigurationServiceUrl
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["FPConfigurationServiceUrl"]);
+            }
+        }
+
+        /// <summary>
+        /// Get FPConfigurationClient
+        /// </summary>
+        private static FundingPilotSystem.Services.FPConfigurationService.FPConfigurationServiceClient _fPConfigurationServiceClient;
+
+        internal static FundingPilotSystem.Services.FPConfigurationService.IFPConfigurationService GetFPConfigurationServiceClient()
+        {
+
+            if (_fPConfigurationServiceClient == null)
+            {
+                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(FPConfigurationServiceUrl);
+                System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding(System.ServiceModel.BasicHttpSecurityMode.None);
+                binding.MaxReceivedMessageSize = Int32.MaxValue;
+
+                binding.CloseTimeout = new TimeSpan(0, 30, 0);
+                binding.OpenTimeout = new TimeSpan(0, 30, 0);
+                binding.ReceiveTimeout = new TimeSpan(0, 30, 0);
+                binding.SendTimeout = new TimeSpan(0, 30, 0);
+
+                _fPConfigurationServiceClient = new FundingPilotSystem.Services.FPConfigurationService.FPConfigurationServiceClient(binding, address);
+            }
+            return _fPConfigurationServiceClient;
         }
     }
 }

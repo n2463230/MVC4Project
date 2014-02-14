@@ -23,9 +23,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilotSystem.NemIDPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilotSystem.Domain", "FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj", "{A771D4D3-E173-405C-8D19-61700B8BF326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilot.LoggingFramework", "LoggingFramework\FundingPilot.LoggingFramework.csproj", "{F40FEE50-378E-4101-BAED-F5932310ADE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilotSystem.LoggingFramework", "LoggingFramework\FundingPilotSystem.LoggingFramework.csproj", "{F40FEE50-378E-4101-BAED-F5932310ADE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilotSystem.Common", "FundingPilotSystem.Common\FundingPilotSystem.Common.csproj", "{A64D1544-A212-49F2-B2B0-233B316EE574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingPilotSystem.NotificationService", "FundingPilotSystem.NotificationService\FundingPilotSystem.NotificationService.csproj", "{FA0F05D8-8B56-4975-A490-361D9E49E63C}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -75,6 +83,14 @@ Global
 		{F40FEE50-378E-4101-BAED-F5932310ADE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40FEE50-378E-4101-BAED-F5932310ADE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F40FEE50-378E-4101-BAED-F5932310ADE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A64D1544-A212-49F2-B2B0-233B316EE574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A64D1544-A212-49F2-B2B0-233B316EE574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A64D1544-A212-49F2-B2B0-233B316EE574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A64D1544-A212-49F2-B2B0-233B316EE574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA0F05D8-8B56-4975-A490-361D9E49E63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA0F05D8-8B56-4975-A490-361D9E49E63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA0F05D8-8B56-4975-A490-361D9E49E63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA0F05D8-8B56-4975-A490-361D9E49E63C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

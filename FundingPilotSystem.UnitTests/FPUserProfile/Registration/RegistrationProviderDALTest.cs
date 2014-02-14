@@ -1,21 +1,23 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FundingPilotSystem.Domain.FPUserProfile;
-using FundingPilotSystem.UnifiedDataStore.DataProviders;
-using FundingPilotSystem.BLL.FPUserProfile.Registration;
-using FundingPilotSystem.BO.FPUserProfile.Registration;
-using FundingPilotSystem.Domain.SolutionUtilities;
+using FundingPilotSystem.Domain;
+using FundingPilotSystem.UnifiedDataStore;
+using FundingPilotSystem.BLL;
+using FundingPilotSystem.BO;
+using FundingPilotSystem.DAL;
+using FundingPilotSystem.Common;
 
-namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
+namespace FundingPilotSystem.UnitTests
 {
     [TestClass]
     public class RegistrationProviderDALTest
     {
         [TestMethod]
+        [TestCategory("Developer: DAL")]
+        [Owner("Paresh Rao")]
         public void SaveUserRegistrationRequest()
         {
-            UserRegistrationRequestBusinessObject objUserRegistrationRequestBO = new UserRegistrationRequestBusinessObject();
-
+            UserRegistrationRequestBO objUserRegistrationRequestBO = new UserRegistrationRequestBO();
             objUserRegistrationRequestBO.UserEmail = Cryptography.Encrypt("pareshgrao@gmail.com");
             objUserRegistrationRequestBO.CountryOfRegistration = 101;
             objUserRegistrationRequestBO.RegistrationDate = DateTime.Now;
@@ -24,18 +26,20 @@ namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
             objUserRegistrationRequestBO.NewsLetter = true;
             objUserRegistrationRequestBO.LoginPassword = Cryptography.Encrypt("pareshgrao@gmail.com");
 
-            RegistrationBusinessLogic objRegistrationBL = new RegistrationBusinessLogic();
-            int result = objRegistrationBL.SaveUserRegistrationRequest(objUserRegistrationRequestBO);
-            if (result == 1)
-            {
+            RegistrationBLL objRegistrationBL = new RegistrationBLL();
+            int returnVal = objRegistrationBL.SaveUserRegistrationRequest(objUserRegistrationRequestBO);
 
-            }
+            Assert.AreEqual(1, returnVal, "It should return 1");
+
         }
 
         [TestMethod]
+        [TestCategory("Developer: DAL")]
+        [Owner("Paresh Rao")]
         public void SaveRegisteredUser()
         {
-            RegisteredUserBusinessObject objRegisteredUserBO = new RegisteredUserBusinessObject();
+
+            RegisteredUserBO objRegisteredUserBO = new RegisteredUserBO();
 
             objRegisteredUserBO.UserEmail = Cryptography.Encrypt("pareshgrao@yahoo.co.in");
             objRegisteredUserBO.CountryOfRegistration = 101;
@@ -45,12 +49,25 @@ namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
             objRegisteredUserBO.ConfirmationDate = DateTime.Now;
             objRegisteredUserBO.ConfirmationIP = "192.168.1.10";
 
-            RegistrationBusinessLogic objRegistrationBL = new RegistrationBusinessLogic();
-            int result = objRegistrationBL.SaveRegisteredUser(objRegisteredUserBO);
-            if (result == 1)
-            {
 
-            }
+            RegistrationBLL objRegistrationBL = new RegistrationBLL();
+            int returnVal = objRegistrationBL.SaveRegisteredUser(objRegisteredUserBO);
+
+            Assert.AreEqual(1, returnVal, "It should return 1");
+
         }
+
+
+        [TestMethod]
+        [TestCategory("Developer: DAL")]
+        [Owner("Paresh Rao")]
+        public void isDuplicateUserEmailAddress()
+        {
+            RegistrationProviderDAL objRegistrationDAL = new RegistrationProviderDAL();
+            bool returnVal = objRegistrationDAL.isDuplicateUserEmailAddress(Cryptography.Encrypt("rk@yasofttech.com"));
+
+            Assert.AreNotEqual(-1, returnVal, "It should not return  -1");
+        }
+
     }
 }

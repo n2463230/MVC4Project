@@ -11,6 +11,10 @@
     <AssemblyName>FundingPilotSystem.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,9 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SolutionDto\CommonModel.cs" />
-    <Compile Include="SolutionDto\ResourceModel.cs" />
-    <Compile Include="SolutionEnums\SolutionEnums.cs" />
+    <Compile Include="FPConfig\tblEmailLogDto.cs" />
+    <Compile Include="FPConfig\tblEmailQueueDto.cs" />
+    <Compile Include="FPConfig\tblMasterConfigurationDto.cs" />
+    <Compile Include="FPConfig\tblPageSpecificPlaceholderConfigDto.cs" />
+    <Compile Include="FPConfig\tblProcessDto.cs" />
+    <Compile Include="FPConfig\tblProcessEmailTemplateDto.cs" />
     <Compile Include="FPMasterValues\tblAccountOpeningFieldDto.cs" />
     <Compile Include="FPMasterValues\tblCompanyIndustryListDto.cs" />
     <Compile Include="FPMasterValues\tblCountryListDto.cs" />
@@ -67,15 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FPUserCredential\tblUserLoginCredentialsDto.cs" />
     <Compile Include="FPUserCredential\tblUserLoginQuestionsDto.cs" />
-    <Compile Include="SolutionDto\FPApplication.cs" />
-    <Compile Include="SolutionDto\LoggedInUser.cs" />
-    <Compile Include="SolutionUtilities\CommonCustomAttributes.cs" />
-    <Compile Include="SolutionUtilities\CommonFunctions.cs" />
-    <Compile Include="SolutionUtilities\CustomLocalizationUtility.cs" />
-    <Compile Include="SolutionUtilities\Cryptography.cs" />
-    <Compile Include="SolutionUtilities\JavaScriptSerialization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,34 +1,46 @@
-﻿using FundingPilotSystem.Domain.FPMasterValues;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using AutoMapper;
+using FundingPilotSystem.Common;
+using FundingPilotSystem.Services.MasterDataProviderService;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
+using System.Threading;
+using System.Web.Mvc;
+using CountryListVM = FundingPilotSystem.VM.CountryListVM;
+using CountryOfOperationVM = FundingPilotSystem.VM.CountryOfOperationVM;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Resources;
-using System.Web;
-using System.Web.WebPages.Html;
-using SelectListItem = System.Web.Mvc.SelectListItem;
-using FundingPilotSystem.Services.FPMasterValues.MasterDataProviderService;
+
 namespace FundingPilotSystem.Utilities
 {
     public static class CommonUtility
     {
+
+        public static string ApplicationLocalResourcePath
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ApplicationLocalResourcePath"].ToString());
+            }
+        }
+
+        public static string DefaultCulture
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["DefaultCulture"].ToString());
+            }
+        }
         /// <summary>
         /// Common function to get the countries from service or from cache if available
         /// </summary>
         /// <returns></returns>
-        internal static List<tblCountryListDto> GetCountries(IMasterDataProviderService _masterProviderService)
+        internal static List<CountryListVM> GetCountries(IMasterDataProviderService _masterProviderService)
         {
-            List<tblCountryListDto> countries = new List<tblCountryListDto>();
+            List<CountryListVM> countries = new List<CountryListVM>();
             if (CacheManager.CountryList == null)
             {
-
-                countries = _masterProviderService.GetCountries();
+                Mapper.CreateMap<CountryListVM, CountryListVM>();
+                countries = Mapper.Map(_masterProviderService.GetCountries(), countries);
                 CacheManager.CountryList = countries;
             }
             else
@@ -42,13 +54,13 @@ namespace FundingPilotSystem.Utilities
         /// Common function to get the countries of operations
         /// </summary>
         /// <returns></returns>
-        internal static List<tblCountryOfOperationDto> GetCountriesOfOperation(IMasterDataProviderService _masterProviderService)
+        internal static List<CountryOfOperationVM> GetCountriesOfOperation(IMasterDataProviderService _masterProviderService)
         {
-            List<tblCountryOfOperationDto> countries = new List<tblCountryOfOperationDto>();
-            if (CacheManager.CountryList == null)
+            List<CountryOfOperationVM> countries = new List<CountryOfOperationVM>();
+            if (CacheManager.CountryOfOperationList == null)
             {
-
-                countries = _masterProviderService.GetCountryOfOperations();
+                Mapper.CreateMap<CountryOfOperationVM, CountryOfOperationVM>();
+                countries = Mapper.Map(_masterProviderService.GetCountryOfOperations(), countries);
                 CacheManager.CountryOfOperationList = countries;
             }
             else
@@ -57,6 +69,32 @@ namespace FundingPilotSystem.Utilities
             }
             return countries;
         }
+        /// <summary>
+        /// Set the current culture of the page
+        /// </summary>
+        /// <param name="culture"></param>
+        internal static void SetCurrentCulture(string culture)
+        {
+            CultureInfo ci = new CultureInfo(culture);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+        }
 
+        /// <summary>
+        /// list all the cultures
+        /// </summary>
+        /// <returns></returns>
+        internal static List<SelectListItem> GetCultures()
+        {
+            List<SelectListItem> cultures = new List<SelectListItem>();
+            var allCultures = CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(c => c.EnglishName);
+
+            return (from info in allCultures
+                    select new SelectListItem
+                     {
+                         Text = info.EnglishName,
+                         Value = info.TextInfo.CultureName
+                     }).ToList();
+        }
     }
 }

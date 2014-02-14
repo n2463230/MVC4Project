@@ -1,0 +1,717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FPConfigModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblAccountOpeningFormFields">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="FieldId" Type="int" Nullable="false" />
+          <Property Name="AccountTypeId" Type="int" Nullable="false" />
+          <Property Name="IsRequired" Type="bit" Nullable="false" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEmailLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Process" Type="int" Nullable="false" />
+          <Property Name="EmailBody" Type="varchar(max)" Nullable="false" />
+          <Property Name="Receiver" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SentTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmailQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Process" Type="int" Nullable="false" />
+          <Property Name="Receiver" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="HouseNo" Type="varchar" MaxLength="50" />
+          <Property Name="Side" Type="varchar" MaxLength="50" />
+          <Property Name="Door" Type="varchar" MaxLength="50" />
+          <Property Name="Streetname" Type="varchar" MaxLength="255" />
+          <Property Name="AdditionalAddress 1" Type="varchar" MaxLength="255" />
+          <Property Name="AdditionalAddress 2" Type="varchar" MaxLength="255" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="Country" Type="varchar" MaxLength="255" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Fixedphone" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="KYCStatus" Type="int" />
+          <Property Name="AccountNo" Type="int" />
+          <Property Name="AccountType" Type="varchar" MaxLength="50" />
+          <Property Name="AdditionalInformation1" Type="varchar(max)" />
+          <Property Name="AdditionalInformation2" Type="varchar(max)" />
+          <Property Name="AdditionalInformation3" Type="varchar(max)" />
+          <Property Name="AdditionalInformation4" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ErrorStatus" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblMasterConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MinPasswordLength" Type="int" Nullable="false" />
+          <Property Name="RequireNumberInPassword" Type="bit" Nullable="false" />
+          <Property Name="RequireSpecialCharacterInPassword" Type="bit" Nullable="false" />
+          <Property Name="MaxPasswordLife" Type="int" Nullable="false" />
+          <Property Name="MaxLogonRetry" Type="int" Nullable="false" />
+          <Property Name="PasswordHistoryCount" Type="int" Nullable="false" />
+          <Property Name="AllowReusePasswordFromHistory" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultEmailAddress" Type="varchar" MaxLength="255" />
+          <Property Name="OutgoingEmailServer" Type="varchar" MaxLength="255" />
+          <Property Name="SenderMailAddress" Type="varchar" MaxLength="255" />
+          <Property Name="EmailAccountUserName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailAccountUserPassword" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblPageSpecificPlaceholderConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="TopFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="LeftFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="RightFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="BottomFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProcessEmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="EmailContent" Type="ntext" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProcesses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblSystemWidePlaceholderConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GlobalTopFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="GlobalLeftFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="GlobalRightFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="GlobalBottomFrameHTML" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IPAddressOfLastAction" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tblEmailLog_tblProcesses">
+          <End Role="tblProcesses" Type="Self.tblProcesses" Multiplicity="1" />
+          <End Role="tblEmailLog" Type="Self.tblEmailLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmailLog">
+              <PropertyRef Name="Process" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmailQueue_tblProcesses">
+          <End Role="tblProcesses" Type="Self.tblProcesses" Multiplicity="1" />
+          <End Role="tblEmailQueue" Type="Self.tblEmailQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmailQueue">
+              <PropertyRef Name="Process" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProcessEmailTemplate_tblProcesses">
+          <End Role="tblProcesses" Type="Self.tblProcesses" Multiplicity="1" />
+          <End Role="tblProcessEmailTemplate" Type="Self.tblProcessEmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProcessEmailTemplate">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="FPConfigModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAccountOpeningFormFields" EntityType="Self.tblAccountOpeningFormFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmailLog" EntityType="Self.tblEmailLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmailQueue" EntityType="Self.tblEmailQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterConfig" EntityType="Self.tblMasterConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPageSpecificPlaceholderConfig" EntityType="Self.tblPageSpecificPlaceholderConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProcessEmailTemplate" EntityType="Self.tblProcessEmailTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProcesses" EntityType="Self.tblProcesses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSystemWidePlaceholderConfig" EntityType="Self.tblSystemWidePlaceholderConfig" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblEmailLog_tblProcesses" Association="Self.FK_tblEmailLog_tblProcesses">
+            <End Role="tblProcesses" EntitySet="tblProcesses" />
+            <End Role="tblEmailLog" EntitySet="tblEmailLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmailQueue_tblProcesses" Association="Self.FK_tblEmailQueue_tblProcesses">
+            <End Role="tblProcesses" EntitySet="tblProcesses" />
+            <End Role="tblEmailQueue" EntitySet="tblEmailQueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProcessEmailTemplate_tblProcesses" Association="Self.FK_tblProcessEmailTemplate_tblProcesses">
+            <End Role="tblProcesses" EntitySet="tblProcesses" />
+            <End Role="tblProcessEmailTemplate" EntitySet="tblProcessEmailTemplate" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FPConfigModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblAccountOpeningFormField">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="FieldId" Type="Int32" Nullable="false" />
+          <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsRequired" Type="Boolean" Nullable="false" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblMasterConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MinPasswordLength" Type="Int32" Nullable="false" />
+          <Property Name="RequireNumberInPassword" Type="Boolean" Nullable="false" />
+          <Property Name="RequireSpecialCharacterInPassword" Type="Boolean" Nullable="false" />
+          <Property Name="MaxPasswordLife" Type="Int32" Nullable="false" />
+          <Property Name="MaxLogonRetry" Type="Int32" Nullable="false" />
+          <Property Name="PasswordHistoryCount" Type="Int32" Nullable="false" />
+          <Property Name="AllowReusePasswordFromHistory" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultEmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OutgoingEmailServer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SenderMailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAccountUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAccountUserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPageSpecificPlaceholderConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="TopFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LeftFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RightFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BottomFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblProcessEmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="EmailContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblProcess" Relationship="Self.FK_tblProcessEmailTemplate_tblProcesses" FromRole="tblProcessEmailTemplate" ToRole="tblProcesses" />
+        </EntityType>
+        <EntityType Name="tblProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblProcessEmailTemplates" Relationship="Self.FK_tblProcessEmailTemplate_tblProcesses" FromRole="tblProcesses" ToRole="tblProcessEmailTemplate" />
+          <NavigationProperty Name="tblEmailLogs" Relationship="FPConfigModel.FK_tblEmailLog_tblProcesses" FromRole="tblProcess" ToRole="tblEmailLog" />
+          <NavigationProperty Name="tblEmailQueues" Relationship="FPConfigModel.FK_tblEmailQueue_tblProcesses" FromRole="tblProcess" ToRole="tblEmailQueue" />
+        </EntityType>
+        <EntityType Name="tblSystemWidePlaceholderConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GlobalTopFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GlobalLeftFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GlobalRightFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GlobalBottomFrameHTML" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IPAddressOfLastAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tblProcessEmailTemplate_tblProcesses">
+          <End Role="tblProcesses" Type="Self.tblProcess" Multiplicity="1" />
+          <End Role="tblProcessEmailTemplate" Type="Self.tblProcessEmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProcessEmailTemplate">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FPConfigEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblAccountOpeningFormFields" EntityType="Self.tblAccountOpeningFormField" />
+          <EntitySet Name="tblMasterConfigs" EntityType="Self.tblMasterConfig" />
+          <EntitySet Name="tblPageSpecificPlaceholderConfigs" EntityType="Self.tblPageSpecificPlaceholderConfig" />
+          <EntitySet Name="tblProcessEmailTemplates" EntityType="Self.tblProcessEmailTemplate" />
+          <EntitySet Name="tblProcesses" EntityType="Self.tblProcess" />
+          <EntitySet Name="tblSystemWidePlaceholderConfigs" EntityType="Self.tblSystemWidePlaceholderConfig" />
+          <AssociationSet Name="FK_tblProcessEmailTemplate_tblProcesses" Association="Self.FK_tblProcessEmailTemplate_tblProcesses">
+            <End Role="tblProcesses" EntitySet="tblProcesses" />
+            <End Role="tblProcessEmailTemplate" EntitySet="tblProcessEmailTemplates" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FPConfigModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FPConfigModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="tblEmailLogs" EntityType="FPConfigModel.tblEmailLog" />
+          <EntitySet Name="tblEmailQueues" EntityType="FPConfigModel.tblEmailQueue" />
+          <AssociationSet Name="FK_tblEmailLog_tblProcesses" Association="FPConfigModel.FK_tblEmailLog_tblProcesses">
+            <End Role="tblProcess" EntitySet="tblProcesses" />
+            <End Role="tblEmailLog" EntitySet="tblEmailLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmailQueue_tblProcesses" Association="FPConfigModel.FK_tblEmailQueue_tblProcesses">
+            <End Role="tblProcess" EntitySet="tblProcesses" />
+            <End Role="tblEmailQueue" EntitySet="tblEmailQueues" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblEmailLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Process" Type="Int32" Nullable="false" />
+          <Property Name="EmailBody" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Receiver" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SentTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblProcess" Relationship="FPConfigModel.FK_tblEmailLog_tblProcesses" FromRole="tblEmailLog" ToRole="tblProcess" />
+        </EntityType>
+        <EntityType Name="tblEmailQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Process" Type="Int32" Nullable="false" />
+          <Property Name="Receiver" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HouseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Side" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Door" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Streetname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalAddress_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalAddress_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Fixedphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KYCStatus" Type="Int32" />
+          <Property Name="AccountNo" Type="Int32" />
+          <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInformation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInformation2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInformation3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInformation4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ErrorStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblProcess" Relationship="FPConfigModel.FK_tblEmailQueue_tblProcesses" FromRole="tblEmailQueue" ToRole="tblProcess" />
+        </EntityType>
+        <Association Name="FK_tblEmailLog_tblProcesses">
+          <End Type="FPConfigModel.tblProcess" Role="tblProcess" Multiplicity="1" />
+          <End Type="FPConfigModel.tblEmailLog" Role="tblEmailLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcess">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmailLog">
+              <PropertyRef Name="Process" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmailQueue_tblProcesses">
+          <End Type="FPConfigModel.tblProcess" Role="tblProcess" Multiplicity="1" />
+          <End Type="FPConfigModel.tblEmailQueue" Role="tblEmailQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcess">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmailQueue">
+              <PropertyRef Name="Process" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FPConfigModelStoreContainer" CdmEntityContainer="FPConfigEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FPConfigModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAccountOpeningFormFields">
+            <EntityTypeMapping TypeName="FPConfigModel.tblAccountOpeningFormField">
+              <MappingFragment StoreEntitySet="tblAccountOpeningFormFields">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+                <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterConfigs">
+            <EntityTypeMapping TypeName="FPConfigModel.tblMasterConfig">
+              <MappingFragment StoreEntitySet="tblMasterConfig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MinPasswordLength" ColumnName="MinPasswordLength" />
+                <ScalarProperty Name="RequireNumberInPassword" ColumnName="RequireNumberInPassword" />
+                <ScalarProperty Name="RequireSpecialCharacterInPassword" ColumnName="RequireSpecialCharacterInPassword" />
+                <ScalarProperty Name="MaxPasswordLife" ColumnName="MaxPasswordLife" />
+                <ScalarProperty Name="MaxLogonRetry" ColumnName="MaxLogonRetry" />
+                <ScalarProperty Name="PasswordHistoryCount" ColumnName="PasswordHistoryCount" />
+                <ScalarProperty Name="AllowReusePasswordFromHistory" ColumnName="AllowReusePasswordFromHistory" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+                <ScalarProperty Name="DefaultEmailAddress" ColumnName="DefaultEmailAddress" />
+                <ScalarProperty Name="OutgoingEmailServer" ColumnName="OutgoingEmailServer" />
+                <ScalarProperty Name="SenderMailAddress" ColumnName="SenderMailAddress" />
+                <ScalarProperty Name="EmailAccountUserName" ColumnName="EmailAccountUserName" />
+                <ScalarProperty Name="EmailAccountUserPassword" ColumnName="EmailAccountUserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPageSpecificPlaceholderConfigs">
+            <EntityTypeMapping TypeName="FPConfigModel.tblPageSpecificPlaceholderConfig">
+              <MappingFragment StoreEntitySet="tblPageSpecificPlaceholderConfig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="TopFrameHTML" ColumnName="TopFrameHTML" />
+                <ScalarProperty Name="LeftFrameHTML" ColumnName="LeftFrameHTML" />
+                <ScalarProperty Name="RightFrameHTML" ColumnName="RightFrameHTML" />
+                <ScalarProperty Name="BottomFrameHTML" ColumnName="BottomFrameHTML" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProcessEmailTemplates">
+            <EntityTypeMapping TypeName="FPConfigModel.tblProcessEmailTemplate">
+              <MappingFragment StoreEntitySet="tblProcessEmailTemplate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="EmailContent" ColumnName="EmailContent" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProcesses">
+            <EntityTypeMapping TypeName="FPConfigModel.tblProcess">
+              <MappingFragment StoreEntitySet="tblProcesses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSystemWidePlaceholderConfigs">
+            <EntityTypeMapping TypeName="FPConfigModel.tblSystemWidePlaceholderConfig">
+              <MappingFragment StoreEntitySet="tblSystemWidePlaceholderConfig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GlobalTopFrameHTML" ColumnName="GlobalTopFrameHTML" />
+                <ScalarProperty Name="GlobalLeftFrameHTML" ColumnName="GlobalLeftFrameHTML" />
+                <ScalarProperty Name="GlobalRightFrameHTML" ColumnName="GlobalRightFrameHTML" />
+                <ScalarProperty Name="GlobalBottomFrameHTML" ColumnName="GlobalBottomFrameHTML" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IPAddressOfLastAction" ColumnName="IPAddressOfLastAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FPConfigModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FPConfigModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FPConfigModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FPConfigModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FPConfigModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FPConfigModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FPConfigModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FPConfigModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FPConfigModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="tblEmailLogs">
+            <EntityTypeMapping TypeName="FPConfigModel.tblEmailLog">
+              <MappingFragment StoreEntitySet="tblEmailLog">
+                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmailQueues">
+            <EntityTypeMapping TypeName="FPConfigModel.tblEmailQueue">
+              <MappingFragment StoreEntitySet="tblEmailQueue">
+                <ScalarProperty Name="ErrorStatus" ColumnName="ErrorStatus" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AdditionalInformation4" ColumnName="AdditionalInformation4" />
+                <ScalarProperty Name="AdditionalInformation3" ColumnName="AdditionalInformation3" />
+                <ScalarProperty Name="AdditionalInformation2" ColumnName="AdditionalInformation2" />
+                <ScalarProperty Name="AdditionalInformation1" ColumnName="AdditionalInformation1" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="KYCStatus" ColumnName="KYCStatus" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Fixedphone" ColumnName="Fixedphone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="AdditionalAddress_2" ColumnName="AdditionalAddress 2" />
+                <ScalarProperty Name="AdditionalAddress_1" ColumnName="AdditionalAddress 1" />
+                <ScalarProperty Name="Streetname" ColumnName="Streetname" />
+                <ScalarProperty Name="Door" ColumnName="Door" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

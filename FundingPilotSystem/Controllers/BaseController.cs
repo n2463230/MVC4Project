@@ -1,5 +1,5 @@
-﻿using FundingPilotSystem.Areas.UserManagement.Models;
-using FundingPilotSystem.Domain.SolutionDto;
+﻿using FundingPilotSystem.Common;
+using FundingPilotSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using LoggingFramework;
+using System.Threading;
 
 namespace FundingPilotSystem.Controllers
 {
@@ -15,13 +17,21 @@ namespace FundingPilotSystem.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpSessionStateBase session = filterContext.HttpContext.Session;
+            if (session["CurrentCulture"] == null)
+            {
+                session["CurrentCulture"] = Thread.CurrentThread.CurrentCulture.Name;
+            }
             ActionDescriptor actionDescriptor = filterContext.ActionDescriptor;
             string currentController = actionDescriptor.ControllerDescriptor.ControllerName ?? string.Empty;
             string currentAction = actionDescriptor.ActionName ?? string.Empty;
             bool isAjaxRequest = filterContext.HttpContext.Request.IsAjaxRequest();
 
             /* Send to Login page if session is null (not logged in) */
-            if (!isAjaxRequest && string.Compare(currentAction, "Login", StringComparison.CurrentCultureIgnoreCase) != 0)
+            if (!isAjaxRequest
+                    && string.Compare(currentAction, "Login", StringComparison.CurrentCultureIgnoreCase) != 0
+                    && string.Compare(currentAction, "Register", StringComparison.CurrentCultureIgnoreCase) != 0
+                    && string.Compare(currentAction, "GenerateResourceJson", StringComparison.CurrentCultureIgnoreCase) != 0
+                )
             {
 
                 if (CurrentFPApplicationContext.LoggedInUser == null && (!session.IsNewSession) || (session.IsNewSession))
@@ -30,11 +40,13 @@ namespace FundingPilotSystem.Controllers
                     session.Clear();
                     session.Abandon();
 
-                    //send them off to the login page
+                    //send them off to the login page.
+                    // area must be empty to redirect login page.
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                                                                                {
                                                                                    {"action", "Login"},
                                                                                    {"controller", "UserAccount"},
+                                                                                   {"area",""},
                                                                                    {"returnUrl",filterContext.HttpContext.Request.RawUrl}
                                                                                });
                 }
@@ -47,11 +59,25 @@ namespace FundingPilotSystem.Controllers
         /// <param name="filterContext"></param>
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
+            string messsage = GetLoggingMessage(filterContext);
+            Log4NetLogger.Info(messsage);
+
+            base.OnActionExecuted(filterContext);
+        }
+
+        private string GetLoggingMessage(ActionExecutedContext filterContext)
+        {
             System.Web.Mvc.ActionDescriptor actionDescriptor = filterContext.ActionDescriptor;
             string currentController = actionDescriptor.ControllerDescriptor.ControllerName ?? string.Empty;
             string currentAction = actionDescriptor.ActionName ?? string.Empty;
             bool isAjaxRequest = filterContext.HttpContext.Request.IsAjaxRequest();
-
+            string userId = "NotLoggedId";
+            string userName = "NotLoggedId";
+            if (CurrentFPApplicationContext.LoggedInUser != null)
+            {
+                userId = CurrentFPApplicationContext.LoggedInUser.UserId.ToString();
+                userName = CurrentFPApplicationContext.LoggedInUser.Username;
+            }
             var parameters = filterContext.ActionDescriptor.GetParameters();
             StringBuilder parameterDetails = new StringBuilder();
             foreach (var parameter in parameters)
@@ -69,21 +95,9 @@ namespace FundingPilotSystem.Controllers
                 }
             }
 
-            WebAccessLogModel webAccessLogModel = new WebAccessLogModel
-            {
-                Controller = currentController,
-                Action = currentAction,
-                Parameters = parameterDetails.ToString().Trim(new char[] { '&' }).Trim(),
-                IsAjaxRequest = isAjaxRequest,
-                IP = filterContext.HttpContext.Request.UserHostAddress,
-                DateTime = filterContext.HttpContext.Timestamp,
-                UserId = CurrentFPApplicationContext.LoggedInUser.UserId,
-                UserName = CurrentFPApplicationContext.LoggedInUser.Username,
-            };
-
-            AccessLog.WriteWebAccessLog(webAccessLogModel);
-
-            base.OnActionExecuted(filterContext);
+            StringBuilder message = new StringBuilder();
+            message.AppendFormat("{0};{1};{2};{3};{4};{5};{6};{7};", currentController, currentAction, parameterDetails.ToString().Trim(new char[] { '&' }).Trim(), isAjaxRequest, filterContext.HttpContext.Request.UserHostAddress, filterContext.HttpContext.Timestamp, userId, userName);
+            return message.ToString();
         }
 
 
@@ -97,9 +111,9 @@ namespace FundingPilotSystem.Controllers
             string actionName = filterContext.RouteData.GetRequiredString("action");
             var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
 
-            //BLL.LogGenerator.Info(string.Format("ControllerName: {0}", controllerName));
-            //BLL.LogGenerator.Info(string.Format("ActionName: {0}", actionName));
-            //BLL.LogGenerator.Error("OnException: ", filterContext.Exception);
+            string messsage = GetLoggingMessage(filterContext);
+            Log4NetLogger.Error(messsage);
+
 
             filterContext.Result = new ViewResult
             {
@@ -108,6 +122,34 @@ namespace FundingPilotSystem.Controllers
             filterContext.ExceptionHandled = true;
 
             base.OnException(filterContext);
+        }
+
+        private string GetLoggingMessage(ExceptionContext filterContext)
+        {
+            string currentController = filterContext.RouteData.GetRequiredString("controller");
+            string currentAction = filterContext.RouteData.GetRequiredString("action");
+            bool isAjaxRequest = filterContext.HttpContext.Request.IsAjaxRequest();
+            string userId = "NotLoggedId";
+            string userName = "NotLoggedId";
+            if (CurrentFPApplicationContext.LoggedInUser != null)
+            {
+                userId = CurrentFPApplicationContext.LoggedInUser.UserId.ToString();
+                userName = CurrentFPApplicationContext.LoggedInUser.Username;
+            }
+
+            StringBuilder message = new StringBuilder();
+            message.AppendFormat("{0};{1};{2};{3};{4};{5};{6};{7};", currentController, currentAction, filterContext.Exception, isAjaxRequest, filterContext.HttpContext.Request.UserHostAddress, filterContext.HttpContext.Timestamp, userId, userName);
+            return message.ToString();
+        }
+
+        /// <summary>
+        /// The below method will generate jave script file with json object same as resource file
+        /// Object Name will be ICLComResource
+        /// </summary>
+        /// <returns></returns>
+        public JavaScriptResult GenerateResourceJson(string pageName)
+        {
+            return JSResourceManager.GetResourceScript(pageName);
         }
     }
 }

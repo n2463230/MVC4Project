@@ -6,11 +6,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
-using FundingPilotSystem.Domain;
+using FundingPilotSystem.Common;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using FundingPilotSystem.Services.FPMasterValues.MasterDataProviderService;
+using FundingPilotSystem.Services.MasterDataProviderService;
 
 namespace FundingPilotSystem
 {

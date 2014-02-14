@@ -1,0 +1,23 @@
+﻿@model FundingPilotSystem.Common.AlertModel
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="alertModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">@Model.WindowTitle</h4>
+            </div>
+            <div class="modal-body">
+                <p>@Model.WindowBody</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnAlertOk" onclick="return OnOkAlertModal();" class="btn btn-primary">@Model.OkButtonText</button>
+                <button type="button" class="btn btn-default" onclick="return OnHideAlertModal();">@Model.CloseButtonText</button>
+              
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

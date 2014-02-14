@@ -1,0 +1,83 @@
+﻿@using FundingPilotSystem.Utilities;
+@using Telerik.Web.Mvc.UI;
+@using FundingPilotSystem.Common;
+
+@{
+    ViewBag.Title = CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "ProcessEmailTemplates");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section Head
+{
+    @Html.Style("~/Contents/Styles/SystemConfiguration/EmailTemplateConfiguration.css")
+}
+
+@using (Html.BeginForm())
+{
+    <div id="divHiddenFields">
+    </div>
+    <div id="windows">
+        <div id="divxx">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <div class="p_header">
+                        <span class="pageHeader">
+                            @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "ProcessEmailTemplates")
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    @(Html.Telerik().Grid<FundingPilotSystem.VM.ProcessEmailTemplateVM>()
+                            .Name("EmailTemplateConfigurationGrid")
+                            .DataKeys(datakKey => datakKey.Add(key => key.Id))
+                            .DataBinding(dataBinding => dataBinding.Ajax().Select("ListAllAjax", "EmailTemplateConfiguration"))
+                           .Columns(columns =>
+                           {
+                               columns.Bound(column => column.tblProcess.ProcessName).Title(CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Process")).Width(80);
+                               columns.Bound(column => column.CreatedBy).Title(CustomLocalizationUtility.GetKeyValue("CommonResource", "CreatedBy")).Width(80);
+                               columns.Bound(column => column.CreatedOn).Format("{0:" + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern + " " + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.LongTimePattern + "}").Title(CustomLocalizationUtility.GetKeyValue("CommonResource", "CreatedOn")).Width(80);
+                               columns.Bound(column => column.ModifiedBy).Title(CustomLocalizationUtility.GetKeyValue("CommonResource", "ModifiedBy")).Width(80);
+                               columns.Bound(column => column.ModifiedOn).Format("{0:" + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern + " " + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.LongTimePattern + "}").Title(CustomLocalizationUtility.GetKeyValue("CommonResource", "ModifiedOn")).Width(80);
+                               columns.Bound(column => column.Id)
+                                                    .Filterable(false)
+                                                    .Sortable(false)
+                                                    .Groupable(false)
+                                                    .Width(20)
+                                                    .Title(String.Empty)
+                                                    .ClientTemplate("<center><a title='" + CustomLocalizationUtility.GetKeyValue("CommonResource", "Edit") + "' href=" + Url.Action("Save", new { id = "<#= Id #>" }) + "><i class='icon-pencil icon-large'></i></a></center>");
+                               
+                               columns.Bound(column => column.Id)
+                                                    .Filterable(false)
+                                                    .Sortable(false)
+                                                    .Width(20)
+                                                    .Groupable(false)
+                                                    .Title(String.Empty)
+                                                    .ClientTemplate("<center><a title='" + CustomLocalizationUtility.GetKeyValue("CommonResource", "Delete") + "'" + "href='#' onclick='return DeleteEmailTemplateConfiguration(<#= Id #>);'><i class='icon-trash icon-large'></i></a></center>");
+                           })
+                           .Sortable()
+                           .Selectable()
+                           .Filterable()
+                           .HtmlAttributes(new { style = "width:95%;" })
+                           .Scrollable(t => t.Height("auto"))
+                           .Resizable(resizing => resizing.Columns(true))
+                           .Pageable(paging => paging.PageSize(50).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+                           .ToolBar(commands => commands.Custom().Action("Save", "EmailTemplateConfiguration", new { id = "0" })
+                                                   .ButtonType(GridButtonType.Text)
+                                                   .HtmlAttributes(new { @Style = "width: 6em !important;" })
+                                                   .Text(CustomLocalizationUtility.GetKeyValue("CommonResource", "New")))
+
+                    )
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Html.Script("~/Contents/Scripts/SystemConfiguration/EmailTemplateConfiguration.js")

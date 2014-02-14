@@ -20,6 +20,10 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,12 +51,17 @@
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FundingPilotSystem.UnifiedDataStore\bin\Debug\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\FundingPilotSystem.UnifiedDataStore\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.HostAdapters.ASPNETAdapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assets\Microsoft.VisualStudio.QualityTools.HostAdapters.ASPNETAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,6 +81,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FPConfig\FPConfigurationService.svc" />
+    <Content Include="FPConfig\MasterConfigurationService.svc" />
     <Content Include="FPMasterValues\MasterDataProviderService.svc" />
     <Content Include="FPUserProfile\RegistrationService.svc" />
     <Content Include="Web.config">
@@ -79,6 +90,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FPConfig\FPConfigurationService.svc.cs">
+      <DependentUpon>FPConfigurationService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="FPConfig\IFPConfigurationService.cs" />
+    <Compile Include="FPConfig\IMasterConfigurationService.cs" />
+    <Compile Include="FPConfig\MasterConfigurationService.svc.cs">
+      <DependentUpon>MasterConfigurationService.svc</DependentUpon>
+    </Compile>
     <Compile Include="FPMasterValues\MasterDataProviderService.svc.cs">
       <DependentUpon>MasterDataProviderService.svc</DependentUpon>
     </Compile>
@@ -99,6 +118,7 @@
     <Content Include="Log4Net\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FP.Services.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -115,17 +135,17 @@
       <Project>{79791979-adc7-470c-b748-2277acce3d72}</Project>
       <Name>FundingPilotSystem.BO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
-      <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
-      <Name>FundingPilotSystem.Domain</Name>
+    <ProjectReference Include="..\FundingPilotSystem.Common\FundingPilotSystem.Common.csproj">
+      <Project>{a64d1544-a212-49f2-b2b0-233b316ee574}</Project>
+      <Name>FundingPilotSystem.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FundingPilotSystem.VM\FundingPilotSystem.VM.csproj">
       <Project>{ae114f51-617e-4991-87a6-92372a45312f}</Project>
       <Name>FundingPilotSystem.VM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggingFramework\FundingPilot.LoggingFramework.csproj">
+    <ProjectReference Include="..\LoggingFramework\FundingPilotSystem.LoggingFramework.csproj">
       <Project>{f40fee50-378e-4101-baed-f5932310ade7}</Project>
-      <Name>FundingPilot.LoggingFramework</Name>
+      <Name>FundingPilotSystem.LoggingFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

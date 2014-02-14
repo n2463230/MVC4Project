@@ -12,6 +12,9 @@ namespace FundingPilotSystem
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+             
+            //routes.MapRoute("JsonResourceRoute", "ResourceJson", new { controller = "Base", action = "GenerateResourceJson" });
+            routes.MapRoute("JsonResourceRoute", "GenerateResourceJson/{pageName}", new { controller = "Base", action = "GenerateResourceJson" });
 
             routes.MapRoute(
                 name: "Default",

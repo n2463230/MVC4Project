@@ -1,5 +1,5 @@
-﻿using FundingPilotSystem.Domain.SolutionDto;
-using FundingPilotSystem.VM.UserAccountManagement;
+﻿using FundingPilotSystem.Common;
+using FundingPilotSystem.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +23,26 @@ namespace FundingPilotSystem.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel loginModel)
         {
-            if (loginModel.Username == "rk@yasofttech.com" && loginModel.Password == "admin")
+            if (loginModel.Username == "ad@itmcsoft.com" && loginModel.Password == "admin")
             {
-                loginModel.Username = "rk@yasofttech.com";
+                loginModel.Username = "ad@itmcsoft.com";
 
                 CurrentFPApplicationContext.LoggedInUser = new LoggedInUser()
                  {
                      UserId = loginModel.UserId,
                      Password = loginModel.Password,
-                     Username = loginModel.Username
-
+                     Username = loginModel.Username,
+                     IPAddress = System.Web.HttpContext.Current.Request.UserHostAddress,
                  };
+
+                if (HttpContext.Request.QueryString["returnUrl"] != null)
+                {
+                    string returnUrl = HttpContext.Request.QueryString["returnUrl"].ToString();
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                }
 
                 return RedirectToAction("Index", "Home");
             }

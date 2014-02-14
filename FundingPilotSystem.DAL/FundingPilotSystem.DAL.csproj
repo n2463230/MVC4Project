@@ -11,6 +11,10 @@
     <AssemblyName>FundingPilotSystem.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,7 +40,14 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>Assets\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,15 +56,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MasterDataProviderDAL.cs" />
+    <Compile Include="FPConfig\EmailNotificationServiceProviderDAL.cs" />
+    <Compile Include="FPConfig\EmailTemplateConfigurationProviderDAL.cs" />
+    <Compile Include="FPConfig\MasterConfigurationProviderDAL.cs" />
+    <Compile Include="FPConfig\PageSpecificPlaceholderConfigProviderDAL.cs" />
+    <Compile Include="FPMasterValues\MasterDataProviderDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserCredentialProviderDAL.cs" />
+    <Compile Include="FPUserCredential\UserCredentialProviderDAL.cs" />
     <Compile Include="FPUserProfile\Registration\RegistrationProviderDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FundingPilotSystem.BO\FundingPilotSystem.BO.csproj">
+      <Project>{79791979-adc7-470c-b748-2277acce3d72}</Project>
+      <Name>FundingPilotSystem.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FundingPilotSystem.Common\FundingPilotSystem.Common.csproj">
+      <Project>{a64d1544-a212-49f2-b2b0-233b316ee574}</Project>
+      <Name>FundingPilotSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
       <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
       <Name>FundingPilotSystem.Domain</Name>
@@ -62,10 +85,14 @@
       <Project>{37a16c94-b9b8-45ee-b743-bcdde6df0f5f}</Project>
       <Name>FundingPilotSystem.UnifiedDataStore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggingFramework\FundingPilot.LoggingFramework.csproj">
+    <ProjectReference Include="..\LoggingFramework\FundingPilotSystem.LoggingFramework.csproj">
       <Project>{f40fee50-378e-4101-baed-f5932310ade7}</Project>
       <Name>FundingPilot.LoggingFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

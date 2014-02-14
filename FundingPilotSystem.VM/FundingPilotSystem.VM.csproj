@@ -11,6 +11,10 @@
     <AssemblyName>FundingPilotSystem.VM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FPConfig\EmailLogVM.cs" />
+    <Compile Include="FPConfig\EmailQueueVM.cs" />
+    <Compile Include="FPConfig\MasterConfigurationViewModel.cs" />
+    <Compile Include="FPConfig\PageSpecificPlaceholderConfigVM.cs" />
+    <Compile Include="FPConfig\ProcessEmailTemplateVM.cs" />
+    <Compile Include="FPConfig\ProcessVM.cs" />
+    <Compile Include="FPMasterValues\AccountOpeningFieldVM.cs" />
+    <Compile Include="FPMasterValues\CompanyIndustryListVM.cs" />
+    <Compile Include="FPMasterValues\CountryListVM.cs" />
+    <Compile Include="FPMasterValues\CountryOfOperationVM.cs" />
+    <Compile Include="FPMasterValues\KYCStatusVM.cs" />
+    <Compile Include="FPMasterValues\LocalizationSettingsVM.cs" />
+    <Compile Include="FPMasterValues\PublicAuthorityIndustryListVM.cs" />
+    <Compile Include="FPMasterValues\ResourceDataVM.cs" />
+    <Compile Include="FPMasterValues\SupportedAccountTypeVM.cs" />
+    <Compile Include="FPMasterValues\SupportedCurrencyVM.cs" />
+    <Compile Include="FPMasterValues\SupportedLanguageVM.cs" />
+    <Compile Include="FPMasterValues\SystemModuleVM.cs" />
+    <Compile Include="FPMasterValues\UserStatusVM.cs" />
+    <Compile Include="FPMasterValues\UserTypeVM.cs" />
     <Compile Include="FPUserProfile\RegisteredUserViewModel.cs" />
     <Compile Include="FPUserProfile\UserRegistrationRequestsViewModel.cs" />
     <Compile Include="UserAccountManagement\LoginViewModel.cs" />
@@ -48,13 +73,16 @@
     <Compile Include="UserAccountManagement\UserCredentialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
-      <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
-      <Name>FundingPilotSystem.Domain</Name>
+    <Folder Include="SystemConfiguration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FundingPilotSystem.Common\FundingPilotSystem.Common.csproj">
+      <Project>{a64d1544-a212-49f2-b2b0-233b316ee574}</Project>
+      <Name>FundingPilotSystem.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SystemConfiguration\" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

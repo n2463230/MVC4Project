@@ -1,0 +1,22 @@
+﻿.clsFloatLeft {
+    float: left;
+    width: 130px;
+}
+
+.clsMargine {
+    margin-top: 5px;
+}
+
+.clsDisplayNone {
+    display: none;
+}
+
+.t-upload-button-disabled {
+    cursor: default;
+    color: #888888;
+}
+
+#dvModuleName {
+    font-size: 24px;
+    margin-bottom: 10px;
+}

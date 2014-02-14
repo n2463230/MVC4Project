@@ -1,83 +1,92 @@
 ﻿using AutoMapper;
 using FundingPilotSystem.BLL;
-using FundingPilotSystem.Domain.FPMasterValues;
-using FundingPilotSystem.Domain.SolutionDto;
-using FundingPilotSystem.Services.Utilities;
+using FundingPilotSystem.BO;
+using FundingPilotSystem.Common;
+using FundingPilotSystem.VM;
 using LoggingFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 
-namespace FundingPilotSystem.Services.FPMasterValues
+namespace FundingPilotSystem.Services
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class MasterDataProviderService : IMasterDataProviderService
     {
-
-        private MasterDataBusinessLogic _masterDataBusinessLogic = null;
+        private MasterDataBLL _masterDataBusinessLogic = null;
         private FPApplication FPApplication { get; set; }
 
         public void SetFPApplication(FPApplication fpApplication)
         {
             this.FPApplication = fpApplication;
-            this._masterDataBusinessLogic = new MasterDataBusinessLogic(this.FPApplication);
+            this._masterDataBusinessLogic = new MasterDataBLL(this.FPApplication);
         }
         public MasterDataProviderService()
         {
-           
+
         }
 
         /// <summary>
         ///  call to get list of countries
         /// </summary>
         /// <returns></returns>
-        public List<tblCountryListDto> GetCountries()
+        public List<CountryListVM> GetCountries()
         {
             Log4NetLogger.Info("Services : In GetCountries");
-            return _masterDataBusinessLogic.GetCountries();
+            Mapper.CreateMap<CountryListBO, CountryListVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetCountries(), new List<CountryListVM>());
+
         }
+
         /// <summary>
         ///  call to get list of account opening fields
         /// </summary>
         /// <returns></returns>
-        public List<tblAccountOpeningFieldDto> GetAccountOpeningFields()
+        public List<AccountOpeningFieldVM> GetAccountOpeningFields()
         {
-            return _masterDataBusinessLogic.GetAccountOpeningFields();
+            Mapper.CreateMap<AccountOpeningFieldBO, AccountOpeningFieldVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetAccountOpeningFields(), new List<AccountOpeningFieldVM>());
         }
+
         /// <summary>
         ///  call to Get list of company industries 
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblCompanyIndustryListDto> GetCompanyIndustries()
+        public List<CompanyIndustryListVM> GetCompanyIndustries()
         {
-            return _masterDataBusinessLogic.GetCompanyIndustries();
+            Mapper.CreateMap<CompanyIndustryListBO, CompanyIndustryListVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetCompanyIndustries(), new List<CompanyIndustryListVM>());
+
         }
+
         /// <summary>
         ///   call to Get list of Country Of Operations
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblCountryOfOperationDto> GetCountryOfOperations()
+        public List<CountryOfOperationVM> GetCountryOfOperations()
         {
-            return _masterDataBusinessLogic.GetCountryOfOperations();
+            Mapper.CreateMap<CountryOfOperationBO, CountryOfOperationVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetCountryOfOperations(), new List<CountryOfOperationVM>());
         }
+
         /// <summary>
         ///  call to  Get list of KYCStatus
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblKYCStatusDto> GetKYCStatus()
+        public List<KYCStatusVM> GetKYCStatus()
         {
-            return _masterDataBusinessLogic.GetKYCStatus();
+            Mapper.CreateMap<KYCStatusBO, KYCStatusVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetKYCStatus(), new List<KYCStatusVM>());
+
         }
 
         /// <summary>
@@ -85,68 +94,79 @@ namespace FundingPilotSystem.Services.FPMasterValues
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblPublicAuthorityIndustryListDto> GetPublicAuthorityIndustries()
+        public List<PublicAuthorityIndustryListVM> GetPublicAuthorityIndustries()
         {
-            return _masterDataBusinessLogic.GetPublicAuthorityIndustries();
+            Mapper.CreateMap<PublicAuthorityIndustryListBO, PublicAuthorityIndustryListVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetPublicAuthorityIndustries(), new List<PublicAuthorityIndustryListVM>());
 
         }
+
         /// <summary>
         ///  call to  Get list of Supported AccountType
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblSupportedAccountTypeDto> GetSupportedAccountType()
+        public List<SupportedAccountTypeVM> GetSupportedAccountType()
         {
-            return _masterDataBusinessLogic.GetSupportedAccountType();
+            Mapper.CreateMap<SupportedAccountTypeBO, SupportedAccountTypeVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetSupportedAccountType(), new List<SupportedAccountTypeVM>());
 
         }
+
         /// <summary>
         /// Get list of Supported Currencies
         /// </summary>
         /// <returns></returns>
         /// 
-
-        public List<tblSupportedCurrencyDto> GetSupportedCurrencies()
+        public List<SupportedCurrencyVM> GetSupportedCurrencies()
         {
-            return _masterDataBusinessLogic.GetSupportedCurrencies();
+            Mapper.CreateMap<SupportedCurrencyBO, SupportedCurrencyVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetSupportedCurrencies(), new List<SupportedCurrencyVM>());
         }
+
         /// <summary>
         /// Get list of Supported Languages
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblSupportedLanguageDto> GetSupportedLanguages()
+        public List<SupportedLanguageVM> GetSupportedLanguages()
         {
-            return _masterDataBusinessLogic.GetSupportedLanguages();
-
+            Mapper.CreateMap<SupportedLanguageBO, SupportedLanguageVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetSupportedLanguages(), new List<SupportedLanguageVM>());
         }
+
         /// <summary>
         /// Get list of SystemModules
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblSystemModuleDto> GetSystemModules()
+        public List<SystemModuleVM> GetSystemModules()
         {
-            return _masterDataBusinessLogic.GetSystemModules();
-
+            Mapper.CreateMap<SystemModuleBO, SystemModuleVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetSystemModules(), new List<SystemModuleVM>());
         }
+
         /// <summary>
         /// Get list of User Statuses
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblUserStatusDto> GetUserStatuses()
+        public List<UserStatusVM> GetUserStatuses()
         {
-            return _masterDataBusinessLogic.GetUserStatuses();
+            Mapper.CreateMap<UserStatusBO, UserStatusVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetUserStatuses(), new List<UserStatusVM>());
         }
+
         /// <summary>
         /// Get list of UserTypes
         /// </summary>
         /// <returns></returns>
         /// 
-        public List<tblUserTypeDto> GetUserTypes()
+        public List<UserTypeVM> GetUserTypes()
         {
-            return _masterDataBusinessLogic.GetUserTypes();
+            Mapper.CreateMap<UserTypeBO, UserTypeVM>();
+            return Mapper.Map(_masterDataBusinessLogic.GetUserTypes(), new List<UserTypeVM>());
         }
+
     }
 }

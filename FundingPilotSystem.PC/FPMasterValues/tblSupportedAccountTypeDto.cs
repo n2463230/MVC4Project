@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPMasterValues
+namespace FundingPilotSystem.Domain
 {
+    /// <summary>
+    /// This class provides Dto for Supported Account Type
+    /// </summary>
     public class tblSupportedAccountTypeDto
     {
         public int Id { get; set; }

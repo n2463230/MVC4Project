@@ -1,0 +1,109 @@
+﻿@model FundingPilotSystem.VM.LocalizationSettingsVM
+@using Telerik.Web.Mvc.UI
+@using FundingPilotSystem.Utilities
+@using FundingPilotSystem.Common;
+@{
+    ViewBag.Title = CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblResourceConfiguration");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@Html.Style("~/Contents/Styles/SystemConfiguration/LocalizationSettings.css")
+@using (Html.BeginForm())
+{
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <div class="p_header">
+                        <span class="pageHeader">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "LocalizationSettings")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span11">
+            <div class="control-group">
+                <div class="controls-row">
+                    @Html.Partial("MessageRegionPartial", Model.ModelMessage)
+                </div>
+                <div class="controls-row">
+                    <span class="required-field-note" style="float: right;">
+                        <span class="required-field-symbol">*</span>
+                        @CustomLocalizationUtility.GetKeyValue("CommonResource", "IndicatesARequiredField")
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <div class="span3">
+                        @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblCulture")
+                    </div>
+                    <div class="span9">
+                        @(Html.Telerik().ComboBoxFor(c => c.SelectedCulture)
+                              .BindTo(new SelectList(Model.Cultures, "Value", "Text"))
+                              .SelectedIndex(0).HighlightFirstMatch(true)
+                              .HtmlAttributes(new { @style = "width:250px;" })
+                              .ClientEvents(c => c.OnChange("OnCultureChange"))
+                              .Filterable(filtering =>
+                                                      {
+                                                          filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
+                                                      })
+                        )
+                    </div>
+                </div>
+                <div class="controls-row" style="padding-bottom:20px">
+                    <div class="span3">
+                        @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblModule")
+                    </div>
+                    <div class="span9">
+                        @(Html.Telerik().ComboBoxFor(c => c.SelectedModule)
+                              .BindTo(new SelectList(Model.SystemModuleDDL, "Value", "Text"))
+                              .SelectedIndex(0).HighlightFirstMatch(true)
+                              .HtmlAttributes(new { @style = "width:250px;" })
+                              .ClientEvents(c => c.OnChange("OnModuleChange"))
+                              .Filterable(filtering =>
+                                                    {
+                                                        filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
+                                                    })
+                        )
+                    </div>
+                </div>
+                <div class="controls-row">
+                    @(Html.Telerik().Grid<FundingPilotSystem.VM.ResourceDataVM>()
+                        .Name("grdResourceData")
+                        .PrefixUrlParameters(false)
+                        .DataKeys(keys => keys.Add(c => c.Key))
+                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListResourceAjax", "LocalizationSettings", new { @moduleId = Model.SelectedModule, @selectedCulture = Model.SelectedCulture })
+                        .Update("SaveResources", "LocalizationSettings"))
+                        .Columns(columns =>
+                                {
+                                    columns.Bound(column => column.Key).Title(CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblKey")).ReadOnly(true);
+                                    columns.Bound(column => column.Value).Title(CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblValue")).ReadOnly(true);
+                                    columns.Bound(column => column.NewValue).Title(CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblNewValue"));
+                                    columns.Bound(column => column.ModuleId).Hidden(true);
+                                    columns.Bound(column => column.CultureValue).Hidden(true);
+                                })
+                                .Editable(editing => editing.Mode(GridEditMode.InCell))
+                        .Sortable()
+                        .ClientEvents(c => c.OnDataBinding("OnGrdResourceDataDataBinding").OnComplete("onSaveComplete"))
+                        .Filterable()
+                        .Selectable()
+                        .Sortable(sorting => sorting.OrderBy(sortOrder => sortOrder.Add(o => o.Key).Ascending()))
+                        .HtmlAttributes(new { style = "width:95%;" })
+                        .Scrollable(t => t.Height("auto"))
+                        .Resizable(resizing => resizing.Columns(true))
+                        .Pageable(paging => paging.PageSize(30).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+                        .ToolBar(commands =>
+                        {
+                            commands.Template(
+                                @<text>
+                                    <a class="t-button t-grid-save-changes">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblSave")</a>
+                                    <a class="t-button t-grid-cancel-changes">@CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "lblCancel")</a>
+                                </text>);
+                        }))
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Html.Script("~/Contents/Scripts/SystemConfiguration/LocalizationSettings.js")

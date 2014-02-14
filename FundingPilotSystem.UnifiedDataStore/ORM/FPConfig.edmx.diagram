@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4a8479853194975881af0ca2599aeeb" Name="Diagram1">
+        <EntityTypeShape EntityType="FPConfigModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblAccountOpeningFormField" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblMasterConfig" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblPageSpecificPlaceholderConfig" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblProcessEmailTemplate" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblProcess" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPConfigModel.tblSystemWidePlaceholderConfig" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="FPConfigModel.FK_tblProcessEmailTemplate_tblProcesses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FPConfigModel.tblEmailLog" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="FPConfigModel.tblEmailQueue" Width="1.5" PointX="3" PointY="13.875" />
+        <AssociationConnector Association="FPConfigModel.FK_tblEmailLog_tblProcesses" />
+        <AssociationConnector Association="FPConfigModel.FK_tblEmailQueue_tblProcesses" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

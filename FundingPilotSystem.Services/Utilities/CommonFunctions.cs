@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceModel.Web;
 using System.Web;
 
-namespace FundingPilotSystem.Services.Utilities
+namespace FundingPilotSystem.Services
 {
     public static class CommonFunctions
     {

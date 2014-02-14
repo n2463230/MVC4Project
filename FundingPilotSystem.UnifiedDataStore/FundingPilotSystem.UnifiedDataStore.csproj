@@ -11,6 +11,10 @@
     <AssemblyName>FundingPilotSystem.UnifiedDataStore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,10 +41,10 @@
       <HintPath>Assets\AutoMapper.Net4.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -55,9 +59,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProviders\MasterDataProvider.cs" />
-    <Compile Include="DataProviders\UserCredentialProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\EmailLogProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\ProcessEmailTemplateProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\ProcessesProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\EmailQueueProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\MasterConfigurationProvider.cs" />
+    <Compile Include="DataProviders\FPConfig\PageSpecificPlaceholderConfigProvider.cs" />
+    <Compile Include="DataProviders\FPMasterValues\MasterDataProvider.cs" />
+    <Compile Include="DataProviders\FPUserCredential\UserCredentialProvider.cs" />
     <Compile Include="DataProviders\FPUserProfile\Registration\RegistrationProvider.cs" />
+    <Compile Include="ORM\FPConfig.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPConfig.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPConfig.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\FPConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPConfig.edmx</DependentUpon>
+    </Compile>
     <Compile Include="ORM\FPMasterValues.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,16 +129,19 @@
       <DependentUpon>FPUserProfile.edmx</DependentUpon>
     </Compile>
     <Compile Include="ORM\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>FPUserProfile.tt</DependentUpon>
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\sp_helpdiagrams_Result.cs">
-      <DependentUpon>FPUserProfile.tt</DependentUpon>
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\sysdiagram.cs">
-      <DependentUpon>FPUserProfile.tt</DependentUpon>
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblAccountOpeningField.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblAccountOpeningFormField.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblCompanyIndustryList.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
@@ -124,8 +152,26 @@
     <Compile Include="ORM\tblCountryOfOperation.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
     </Compile>
+    <Compile Include="ORM\tblEmailLog.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblEmailQueue.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
     <Compile Include="ORM\tblKYCStatus.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblMasterConfig.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblPageSpecificPlaceholderConfig.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblProcess.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblProcessEmailTemplate.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblPublicAuthorityIndustryList.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
@@ -144,6 +190,9 @@
     </Compile>
     <Compile Include="ORM\tblSystemModule.cs">
       <DependentUpon>FPMasterValues.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblSystemWidePlaceholderConfig.cs">
+      <DependentUpon>FPConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblUserLoginCredential.cs">
       <DependentUpon>FPUserCredential.tt</DependentUpon>
@@ -168,6 +217,23 @@
       <LastGenOutput>FPMasterValues.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
+    <EntityDeploy Include="ORM\FPConfig.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPConfig.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ORM\FPConfig.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPConfig.edmx</DependentUpon>
+      <LastGenOutput>FPConfig.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ORM\FPConfig.edmx.diagram">
+      <DependentUpon>FPConfig.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\FPConfig.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPConfig.edmx</DependentUpon>
+      <LastGenOutput>FPConfig.cs</LastGenOutput>
+    </None>
     <None Include="ORM\FPMasterValues.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FPMasterValues.edmx</DependentUpon>
@@ -224,13 +290,17 @@
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FundingPilotSystem.Common\FundingPilotSystem.Common.csproj">
+      <Project>{a64d1544-a212-49f2-b2b0-233b316ee574}</Project>
+      <Name>FundingPilotSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FundingPilotSystem.PC\FundingPilotSystem.Domain.csproj">
       <Project>{a771d4d3-e173-405c-8d19-61700b8bf326}</Project>
       <Name>FundingPilotSystem.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggingFramework\FundingPilot.LoggingFramework.csproj">
+    <ProjectReference Include="..\LoggingFramework\FundingPilotSystem.LoggingFramework.csproj">
       <Project>{f40fee50-378e-4101-baed-f5932310ade7}</Project>
-      <Name>FundingPilot.LoggingFramework</Name>
+      <Name>FundingPilotSystem.LoggingFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

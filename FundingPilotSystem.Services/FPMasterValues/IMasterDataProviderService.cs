@@ -1,6 +1,7 @@
 ﻿
-using FundingPilotSystem.Domain.FPMasterValues;
-using FundingPilotSystem.Services.Utilities;
+using FundingPilotSystem.BO;
+using FundingPilotSystem.Common;
+using FundingPilotSystem.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,20 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 
-namespace FundingPilotSystem.Services.FPMasterValues
+namespace FundingPilotSystem.Services
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IMasterDataProviderService : ICommonService
     {
         [OperationContract]
-        List<tblCountryListDto> GetCountries();
+        List<CountryListVM> GetCountries();
 
         [OperationContract]
-        List<tblCountryOfOperationDto> GetCountryOfOperations();
+        List<CountryOfOperationVM> GetCountryOfOperations();
 
-        
+        [OperationContract]
+        List<SystemModuleVM> GetSystemModules();
     }
 
 

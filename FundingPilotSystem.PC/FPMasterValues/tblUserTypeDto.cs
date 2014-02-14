@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPMasterValues
+namespace FundingPilotSystem.Domain
 {
+
+    /// <summary>
+    /// This class provides Dto for User Type
+    /// </summary>
     public class tblUserTypeDto
     {
         public int Id { get; set; }

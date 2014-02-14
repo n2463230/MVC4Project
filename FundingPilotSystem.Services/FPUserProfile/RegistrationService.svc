@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="FundingPilotSystem.Services.FPUserProfile.RegistrationService" CodeBehind="RegistrationService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FundingPilotSystem.Services.RegistrationService" CodeBehind="RegistrationService.svc.cs" %>

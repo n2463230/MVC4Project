@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPMasterValues
+namespace FundingPilotSystem.Domain
 {
+
+    /// <summary>
+    /// This class provides Dto for Public Authority Industry object
+    /// </summary>
     public class tblPublicAuthorityIndustryListDto
     {
         public int Id { get; set; }

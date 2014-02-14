@@ -1,0 +1,110 @@
+﻿@using FundingPilotSystem.Utilities;
+@using Telerik.Web.Mvc.UI;
+@using FundingPilotSystem.Common;
+
+@model FundingPilotSystem.VM.ProcessEmailTemplateVM
+
+@{
+    ViewBag.Title = CustomLocalizationUtility.GetKeyValue("CommonResource", "Save");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @*@(Html.EnableClientValidation())*@
+
+    <div id="divHiddenFields">
+        @Html.HiddenFor(p => p.CreatedBy)
+        @Html.HiddenFor(p => p.CreatedOn)
+    </div>
+    <div id="windows">
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <div class="controls-row">
+                    <div class="p_header">
+                        <span class="pageHeader">
+                            @if (Model.Id > 0)
+                            {
+                                @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "EditProcessEmailTemplate")
+                            }
+
+                            else
+                            {
+                                @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "AddNewProcessEmailTemplate")
+                            }
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span11">
+            <div class="control-group">
+                <div class="controls-row">
+                    <span class="required-field-note" style="float: right;">
+                        <span class="required-field-symbol">*</span>
+                        @CustomLocalizationUtility.GetKeyValue("CommonResource", "IndicatesARequiredField")
+                    </span>
+                </div>
+                <div class="controls-row">
+                    @*@Html.Partial("MessageRegionPartial", Model.ModelMessage)*@
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls-row">
+                        @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "Process")
+                        <span class="required-field-symbol">*</span>
+                    </div>
+                    <div class="controls-row">
+                        @(Html.Telerik().ComboBoxFor(model => model.ProcessId)
+                            .BindTo(new SelectList(Model.ProcessDdl, "Id", "ProcessName"))
+                            .HtmlAttributes(new { @class = "span12" })
+                            .SelectedIndex(0)
+                            .Filterable(filtering => filtering.FilterMode(AutoCompleteFilterMode.StartsWith))
+                            .Enable(Model.Id == 0))
+                    </div>
+                    <div class="controls-row">
+                        @Html.ValidationMessageFor(model => model.ProcessId)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls-row">
+                        @CustomLocalizationUtility.GetKeyValue("SystemConfigurationResources", "EmailContent");
+                        <span class="required-field-symbol">*</span>
+                    </div>
+                    <div class="controls-row">
+                        @(Html.Telerik().EditorFor(model => model.EmailContent)
+                            .Encode(false)
+                            .HtmlAttributes(new { @class = "span12" }))
+                    </div>
+                    <div class="controls-row">
+                        @Html.ValidationMessageFor(model => model.EmailContent)
+                    </div>
+                </div>
+            </div>
+            <div class="span12">
+                <div class="row">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="span12" style="margin-left: 0">
+                <div class="control-group">
+                    <div class="controls-row">
+                        <input type="submit" value="@CustomLocalizationUtility.GetKeyValue("CommonResource", "Save")" class="button t-button" />
+                        <input type="button" value="@CustomLocalizationUtility.GetKeyValue("CommonResource", "Cancel")" onclick="document.location.href = '@Url.Action("ListAll")'" class="button t-button" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div class="row">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    @Html.Script("~/Contents/Scripts/SystemConfiguration/EmailTemplateConfiguration.js")
+}

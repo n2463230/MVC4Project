@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPMasterValues
+namespace FundingPilotSystem.Domain
 {
+
+    /// <summary>
+    /// This class provides Dto for country of operations
+    /// </summary>
     public class tblCountryOfOperationDto
     {
         public int Id { get; set; }

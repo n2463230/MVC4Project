@@ -6,15 +6,17 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @Html.Style("~/Contents/assets/fonts/Font-Awesome/css/font-awesome.min.css")
     @Html.Style("~/Contents/assets/css/vendor/bootstrap.min.css")
     @Html.Style("~/Contents/assets/css/vendor/bootstrap-theme.min.css")
     @Html.Style("~/Contents/assets/css/vendor/custom.css")
     @Html.Style("~/Contents/Styles/Shared/Common.css")
-
+    
+    
     @Html.Script("~/Contents/Scripts/Shared/jquery-1.8.1.min.js")
     @Html.Script("~/Contents/Scripts/Shared/jquery-migrate-1.1.1.min.js")
     @Html.Script("~/Contents/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")
-
+    @Html.Script("~/Contents/assets/js/vendor/bootstrap.min.js")    
     @(Html.Telerik().StyleSheetRegistrar()
                       .DefaultGroup(group => group
                           .Add("telerik.common.css")
@@ -23,9 +25,12 @@
                           .Compress(true).CacheDurationInDays(10000))
     )
 
-
+    @RenderSection("Head", false)
 </head>
 <body>
+    <div id="hiddenValues">
+        @Html.Hidden("webUrl", System.Configuration.ConfigurationManager.AppSettings["WebUrlPrefix"])
+    </div>
     <div class="container-full">
         <header class="fp-header blue" role="banner">
             <!-- class here will not be part of bootstrap -->
@@ -60,7 +65,9 @@
                                 <li><a href="#">Bids</a></li>
                                 <li><a href="#">Statements</a></li>
                                 <li><a href="#">Settings</a></li>
-
+                                <li>
+                                    <a href="@Url.Action("Index", "LocalizationSettings", new { area = "Localization" })">LocalizationSettings</a>
+                                </li>
                         </div>
                     </div>
                 </div>
@@ -119,11 +126,17 @@
             </div>
         </footer>
     </div>
-    
+
     @Html.Script("~/Contents/Scripts/Shared/jquery.unobtrusive-ajax.min.js")
     @Html.Script("~/Contents/Scripts/Shared/jquery.validate.min.js")
     @Html.Script("~/Contents/Scripts/Shared/jquery.validate.unobtrusive.min.js")
-    @Html.Script("~/Contents/assets/js/vendor/bootstrap.min.js")
+    @Html.Script("~/Contents/Scripts/Shared/CustomDataAnotationValidation.js")
+    @Html.Script("~/Contents/Scripts/Shared/Common.js")
+    <!-- Generate resource js files -->
+    <script src="~/GenerateResourceJson/CommonResource" type="text/javascript"></script>
+    <script src="~/GenerateResourceJson/RegistrationProcess" type="text/javascript"></script>
+    <script src="~/GenerateResourceJson/SystemConfigurationResources" type="text/javascript"></script>
+    <script src="~/GenerateResourceJson/UserAccountManagement" type="text/javascript"></script>
 
     @Html.Telerik().ScriptRegistrar().jQuery(false)
 </body>

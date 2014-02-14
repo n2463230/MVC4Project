@@ -1,16 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FundingPilotSystem.Domain.FPUserProfile;
-using FundingPilotSystem.Domain.SolutionUtilities;
-using FundingPilotSystem.UnifiedDataStore.DataProviders;
-
-
-namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
+using FundingPilotSystem.Domain;
+using FundingPilotSystem.UnifiedDataStore;
+using FundingPilotSystem.Common;
+namespace FundingPilotSystem.UnitTests
 {
     [TestClass]
     public class RegistrationProviderTest
     {
         [TestMethod]
+        [TestCategory("Developer: UnifiedDataStore")]
+        [Owner("Paresh Rao")]
         public void SaveUserRegistrationRequest()
         {
             //Unified Data Store
@@ -26,9 +26,13 @@ namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
 
             RegistrationProvider objUserProfileDataProvider = new RegistrationProvider();
             int returnVal = objUserProfileDataProvider.SaveUserRegistrationRequest(objDto);
+
+            Assert.AreEqual(1, returnVal, "It should return 1");
         }
 
         [TestMethod]
+        [TestCategory("Developer: UnifiedDataStore")]
+        [Owner("Paresh Rao")]
         public void SaveRegisteredUser()
         {
             tblRegisteredUserDto objDto = new tblRegisteredUserDto();
@@ -43,6 +47,19 @@ namespace FundingPilotSystem.UnitTests.FPUserProfile.Registration
 
             RegistrationProvider objRegistrationProvider = new RegistrationProvider();
             int returnVal = objRegistrationProvider.SaveRegisteredUser(objDto);
+
+            Assert.AreEqual(1, returnVal, "It should return 1");
+        }
+
+        [TestMethod]
+        [TestCategory("Developer: UnifiedDataStore")]
+        [Owner("Paresh Rao")]
+        public void isDuplicateUserEmailAddress()
+        {
+            RegistrationProvider objRegistrationProvider = new RegistrationProvider();
+            bool returnVal = objRegistrationProvider.isDuplicateUserEmailAddress(Cryptography.Encrypt("rk@yasofttech.com"));
+
+            Assert.AreNotEqual(-1,returnVal, "It should not return -1");
         }
     }
 }

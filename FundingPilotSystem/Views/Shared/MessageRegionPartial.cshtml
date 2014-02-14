@@ -1,8 +1,8 @@
-﻿@model List<FundingPilotSystem.Domain.SolutionDto.ModelMessage>
+﻿@model List<FundingPilotSystem.Common.ModelMessage>
 <div id="commonErrorRegion">
     @{if (Model != null)
       {
-          if (Model.Where(m => m.Type == FundingPilotSystem.Domain.SolutionDto.MessageType.Error).Count() > 0)
+          if (Model.Where(m => m.Type == FundingPilotSystem.Common.MessageType.Error).Count() > 0)
           {
         <div style="background: none repeat scroll 0 0 lightyellow; border: 1px solid #DADADA; display: block; margin: 10px; padding: 5px 5px 0;">
             <ul style="list-style: disc; margin-left: 25px; color: red;">
@@ -13,7 +13,7 @@
             </ul>
         </div>
           }
-          else if (Model.Where(m => m.Type == FundingPilotSystem.Domain.SolutionDto.MessageType.Success).Count() > 0)
+          else if (Model.Where(m => m.Type == FundingPilotSystem.Common.MessageType.Success).Count() > 0)
           {
         <div style="background: none repeat scroll 0 0 lightyellow; border: 1px solid #DADADA; display: block; margin: 10px; padding: 5px 5px 0;">
             <ul style="list-style: disc; margin-left: 25px; color: green;">

@@ -181,90 +181,6 @@ label
     height: 2.1em !important;
 }
 
-/*Telerik-Grid Style Changes*/
-.t-grid-content
-{
-    min-height: 200px;
-    /*overflow-y: hidden !important;*/
-    font-size: 0.9em;
-}
-
-.t-grid .t-header
-{
-    line-height: 18px !important;
-    border-right: 1px solid #ccc !important;
-}
-
-.t-grid
-{
-    border: 0px none !important;
-}
-
-    .t-grid .t-grid-toolbar
-    {
-        border: 0px none !important;
-        background-color: #fff;
-    }
-
-    .t-grid .t-grouping-header
-    {
-        border-bottom: 0px none !important;
-        border-top: 1px solid #ccc !important;
-        border-right: 1px solid #ccc !important;
-        border-left: 1px solid #ccc !important;
-        width: 99.4%;
-    }
-
-    .t-grid .t-grid-header
-    {
-        border: 1px solid #ccc !important;
-        border-bottom: 0px none !important;
-        width: 98.7%;
-        /*padding: 0px;*/
-    }
-
-    .t-grid .t-grid-content
-    {
-        border: 1px solid #ccc !important;
-    }
-
-.t-grid-pager
-{
-    border: 1px solid #ccc !important;
-    width: 98.5% !important;
-}
-
-.t-widget
-{
-    border: none;
-}
-
-.t-grouping-header, .t-grouping-dropclue
-{
-    height: auto !important;
-    line-height: auto !important;
-}
-
-/*grid filter */
-.t-filter-options
-{
-    width: 160px !important;
-}
-    /*grid filter - for text box */
-
-    .t-filter-options input[type="radio"], .t-filter-options input[type="checkbox"]
-    {
-        width: 50px !important;
-    }
-
-    /*grid filter combo */
-    .t-filter-options select
-    {
-        width: 156px !important;
-    }
-
-/*Telerik-Grid Style Changes*/
-
 /*icons*/
 a.disabled [class^="icon-"]
 {
@@ -304,15 +220,6 @@ a:hover .icon-caret-up
 
 /*icons*/
 
-.t-grouping-header, .t-grid-toolbar
-{
-    padding: 0.25em 0.25em 0.6em !important;
-}
-
-.t-grouping-row td
-{
-    background: none !important;
-}
 
 .greyBackGround
 {
@@ -352,19 +259,10 @@ a:hover .icon-caret-up
     color: #333;
 }
 
-/* plus sign before grid group */
-.t-grid .t-group-col, .t-grid .t-hierarchy-col
-{
-    width: 15px !important;
+.t-grid .t-grid-header .t-header .t-link {
+    height: auto !important;
 }
 
-.t-grid .t-grid-header .t-header .t-link
-{
-    height: auto;
-}
-
-.t-grid .t-grid-header .t-header,
-.t-grid .t-grid-header .t-last-header
-{
-    white-space: normal;
+.t-combobox > .t-dropdown-wrap {
+    padding-right: 0px !important;
 }

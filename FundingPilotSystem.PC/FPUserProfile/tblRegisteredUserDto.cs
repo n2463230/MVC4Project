@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPUserProfile
+namespace FundingPilotSystem.Domain
 {
+
+    /// <summary>
+    /// This class provides Dto for registered users
+    /// </summary>
    public class tblRegisteredUserDto
     {
         public int Id { get; set; }

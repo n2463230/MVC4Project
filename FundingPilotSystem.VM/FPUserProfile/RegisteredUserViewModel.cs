@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.VM.FPUserProfile
+namespace FundingPilotSystem.VM
 {
     public class RegisteredUserViewModel
     {
@@ -33,7 +33,8 @@ namespace FundingPilotSystem.VM.FPUserProfile
 
         public System.DateTime ConfirmationDate { get; set; }
 
-        public byte[] ConfirmationIP { get; set; }
+        //public byte[] ConfirmationIP { get; set; }
+        public string ConfirmationIP { get; set; }
 
         #endregion
 

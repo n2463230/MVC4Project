@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FundingPilotSystem.Domain.FPUserCredential
+namespace FundingPilotSystem.Domain
 {
+
+    /// <summary>
+    /// This class provides Dto for user login security questions
+    /// </summary>
    public class tblUserLoginQuestionsDto
     {
         public int Id { get; set; }
